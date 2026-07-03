@@ -26,17 +26,19 @@ jobs:
       - name: Configurar Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22.17.1
-          cache: npm
+          node-version: 22
 
-      - name: Limpar cache do npm
-        run: npm cache clean --force
+      - name: Ativar pnpm
+        run: corepack enable
+
+      - name: Preparar pnpm
+        run: corepack prepare pnpm@9.15.4 --activate
 
       - name: Instalar dependencias
-        run: npm ci --no-audit --no-fund
+        run: pnpm install --no-frozen-lockfile
 
       - name: Gerar build
-        run: npm run build
+        run: pnpm run build
 
       - name: Configurar Pages
         uses: actions/configure-pages@v5
