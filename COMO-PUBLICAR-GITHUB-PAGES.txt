@@ -1,0 +1,41 @@
+COMO PUBLICAR ESTE PROJETO NO GITHUB PAGES
+
+Este projeto e React + Vite. Ele nao deve ser publicado no GitHub Pages usando o index.html da raiz diretamente.
+O GitHub precisa gerar a pasta dist automaticamente usando GitHub Actions.
+
+1) Suba todos os arquivos deste projeto para o repositorio:
+   https://github.com/marlouun/portfolio-vitoria-boso-pronto
+
+2) No GitHub, entre no repositorio e va em:
+   Settings > Pages
+
+3) Em Build and deployment, configure:
+   Source: GitHub Actions
+
+4) Depois va na aba Actions e aguarde o workflow chamado:
+   Deploy para GitHub Pages
+
+5) Quando terminar com sucesso, abra:
+   https://marlouun.github.io/portfolio-vitoria-boso-pronto/
+
+IMPORTANTE
+
+O arquivo vite.config.ts ja esta configurado com:
+base: '/portfolio-vitoria-boso-pronto/'
+
+Isso e necessario porque o GitHub Pages hospeda este projeto dentro da pasta do repositorio.
+
+Se algum dia voce mudar o nome do repositorio, tambem precisa mudar essa linha no vite.config.ts.
+
+PARA RODAR LOCALMENTE
+
+npm install
+npm run dev
+
+Depois abra:
+http://localhost:5173
+
+PARA TESTAR O BUILD NO PC
+
+npm run build
+npm run preview

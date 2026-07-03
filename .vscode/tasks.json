@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Instalar dependencias",
+      "type": "shell",
+      "command": "npm install",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Rodar Portfolio Vite",
+      "type": "shell",
+      "command": "npm run dev",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "custom",
+        "pattern": {
+          "regexp": "."
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Local:",
+          "endsPattern": "ready in"
+        }
+      }
+    }
+  ]
+}

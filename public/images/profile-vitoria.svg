@@ -1,0 +1,7 @@
+<svg width="900" height="900" viewBox="0 0 900 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="900" rx="80" fill="#FFF1EB"/>
+  <circle cx="450" cy="340" r="170" fill="#F4B59E"/>
+  <path d="M272 362C288 210 392 148 520 184C628 214 668 304 632 408C550 350 430 328 272 362Z" fill="#221817"/>
+  <path d="M185 820C245 610 338 515 450 515C562 515 655 610 715 820H185Z" fill="#C86D4C"/>
+  <text x="450" y="765" text-anchor="middle" font-family="Arial, sans-serif" font-size="38" font-weight="800" fill="#FFFFFF">Foto de perfil</text>
+</svg>

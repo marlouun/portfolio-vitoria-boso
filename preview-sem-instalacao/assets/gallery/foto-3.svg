@@ -1,0 +1,9 @@
+<svg width="700" height="900" viewBox="0 0 700 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="700" height="900" rx="48" fill="#FFF1EB"/>
+  <circle cx="540" cy="160" r="150" fill="#F2C6B6"/>
+  <circle cx="180" cy="700" r="210" fill="#EAA98E" opacity="0.75"/>
+  <rect x="95" y="190" width="510" height="470" rx="42" fill="#FFFFFF" opacity="0.74"/>
+  <path d="M145 595L285 420L390 530L465 450L555 595H145Z" fill="#C86D4C" opacity="0.86"/>
+  <circle cx="290" cy="320" r="58" fill="#221817" opacity="0.75"/>
+  <text x="350" y="785" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" font-weight="800" fill="#221817">Galeria 3</text>
+</svg>

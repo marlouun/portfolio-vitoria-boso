@@ -1,0 +1,24 @@
+COMO RODAR O PROJETO NO VS CODE
+
+FORMA MAIS FACIL, SEM INSTALAR NADA:
+1. Abra a pasta portfolio-vitoria-boso-pronto no VS Code.
+2. Abra a pasta preview-sem-instalacao.
+3. Clique com o botao direito no arquivo index.html.
+4. Clique em Open with Live Server.
+5. Se nao aparecer, instale a extensao Live Server.
+
+FORMA COM REACT/VITE:
+1. Instale o Node.js.
+2. Abra o terminal na pasta principal.
+3. Rode: npm install
+4. Rode: npm run dev
+5. Abra: http://localhost:5173
+
+NO NAVEGADOR INTERNO DO VS CODE:
+1. Depois de rodar npm run dev, pressione Ctrl + Shift + P.
+2. Digite: Simple Browser: Show
+3. Cole: http://localhost:5173
+
+
+CORREÇÃO DE ÍCONES:
+Esta versão não usa mais lucide-react, então não deve aparecer erro de import/export de ícones no console.
