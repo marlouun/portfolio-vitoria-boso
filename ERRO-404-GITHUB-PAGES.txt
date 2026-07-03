@@ -1,0 +1,35 @@
+POR QUE O SITE NAO CARREGAVA
+
+O GitHub Pages estava servindo o index.html da raiz do projeto React/Vite.
+Esse index.html contem:
+
+  <script type="module" src="/src/main.tsx"></script>
+
+Esse arquivo so funciona no modo desenvolvimento com Vite. No GitHub Pages o navegador nao compila .tsx, por isso aparecem erros 404 e a pagina fica em branco.
+
+COMO PUBLICAR DO JEITO MAIS SIMPLES
+
+1. Rode no projeto:
+   npm install
+   npm run build
+
+2. Suba para o GitHub somente o conteudo da pasta dist.
+
+Neste ZIP eu ja deixei uma pasta chamada:
+
+  publicar-no-github-pages
+
+Ela ja contem os arquivos prontos para o GitHub Pages.
+
+Se voce quiser usar GitHub Pages por Branch:
+- Va em Settings > Pages
+- Source: Deploy from a branch
+- Branch: main
+- Folder: /root
+- Suba os arquivos da pasta publicar-no-github-pages na raiz do repositorio
+
+Se voce quiser usar GitHub Actions:
+- Use os arquivos do projeto normal
+- Settings > Pages
+- Source: GitHub Actions
+- O workflow vai rodar npm run build e publicar dist automaticamente
