@@ -15,7 +15,6 @@
     "typescript": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "framer-motion": "latest",
     "tailwindcss": "latest",
     "@tailwindcss/vite": "latest"
   },

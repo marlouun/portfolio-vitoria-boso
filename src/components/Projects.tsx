@@ -1,10 +1,9 @@
-import { motion } from 'framer-motion';
 import { projects } from '../data/projects';
 import { Reveal } from './Reveal';
 
 export function Projects() {
   return (
-    <section id="projetos" className="py-20">
+    <section id="projetos" className="py-16 sm:py-20">
       <div className="container-page">
         <Reveal>
           <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
@@ -18,10 +17,18 @@ export function Projects() {
 
         <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => (
-            <Reveal key={project.id} delay={index * 0.08}>
-              <motion.article whileHover={{ y: -12, rotate: index % 2 === 0 ? -1 : 1 }} className="group overflow-hidden rounded-[2rem] bg-white/90 p-3 soft-shadow backdrop-blur transition">
+            <Reveal key={project.id} delay={index * 0.06}>
+              <article className="group overflow-hidden rounded-[2rem] bg-white/90 p-3 soft-shadow backdrop-blur transition duration-300 hover:-translate-y-3">
                 <div className="relative overflow-hidden rounded-[1.5rem]">
-                  <motion.img src={project.image} alt={project.title} className="h-72 w-full object-cover transition duration-700 group-hover:scale-110" />
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="h-72 w-full object-cover transition duration-700 group-hover:scale-105"
+                    loading="lazy"
+                    decoding="async"
+                    width="900"
+                    height="720"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/35 via-transparent to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
                 </div>
                 <div className="p-5">
@@ -33,7 +40,7 @@ export function Projects() {
                   <p className="mt-3 text-sm leading-6 text-zinc-600">{project.description}</p>
                   <p className="mt-5 text-sm font-black text-zinc-950">{project.highlight}</p>
                 </div>
-              </motion.article>
+              </article>
             </Reveal>
           ))}
         </div>

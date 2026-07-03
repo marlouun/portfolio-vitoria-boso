@@ -1,5 +1,4 @@
-import { motion } from 'framer-motion';
-import type { ReactNode } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 
 type RevealProps = {
   children: ReactNode;
@@ -8,24 +7,47 @@ type RevealProps = {
   direction?: 'up' | 'down' | 'left' | 'right' | 'none';
 };
 
-const offset = {
-  up: { y: 44, x: 0 },
-  down: { y: -44, x: 0 },
-  left: { x: 44, y: 0 },
-  right: { x: -44, y: 0 },
-  none: { x: 0, y: 0 },
+const directionClass = {
+  up: 'reveal-up',
+  down: 'reveal-down',
+  left: 'reveal-left',
+  right: 'reveal-right',
+  none: 'reveal-none',
 };
 
-export function Reveal({ children, className, delay = 0, direction = 'up' }: RevealProps) {
+export function Reveal({ children, className = '', delay = 0, direction = 'up' }: RevealProps) {
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    if (!('IntersectionObserver' in window)) {
+      element.classList.add('is-visible');
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          element.classList.add('is-visible');
+          observer.unobserve(element);
+        }
+      },
+      { threshold: 0.16, rootMargin: '0px 0px -8% 0px' }
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, filter: 'blur(14px)', ...offset[direction] }}
-      whileInView={{ opacity: 1, filter: 'blur(0px)', x: 0, y: 0 }}
-      viewport={{ once: true, amount: 0.18 }}
-      transition={{ duration: 0.75, delay, ease: [0.16, 1, 0.3, 1] }}
+    <div
+      ref={ref}
+      className={`reveal ${directionClass[direction]} ${className}`}
+      style={{ transitionDelay: `${delay}s` }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

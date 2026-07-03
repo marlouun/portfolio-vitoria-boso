@@ -34,13 +34,13 @@ img {
 }
 
 .soft-shadow {
-  box-shadow: 0 24px 90px rgba(83, 43, 32, 0.14);
+  box-shadow: 0 18px 54px rgba(83, 43, 32, 0.12);
 }
 
 .card-glass {
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(18px);
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(10px);
 }
 
 .section-kicker {
@@ -67,7 +67,7 @@ img {
   position: absolute;
   inset: -80% -20%;
   z-index: -1;
-  background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.35), transparent 65%);
+  background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.32), transparent 65%);
   transform: translateX(-60%) rotate(8deg);
   transition: transform 0.7s ease;
 }
@@ -76,11 +76,212 @@ img {
   transform: translateX(60%) rotate(8deg);
 }
 
+.header-enter {
+  animation: header-enter 0.7s ease both;
+}
+
+.hero-copy {
+  animation: hero-copy 0.8s ease both;
+}
+
+.hero-visual {
+  animation: hero-visual 0.9s ease 0.12s both;
+}
+
+.hero-glow {
+  animation: pulse-soft 6s ease-in-out infinite;
+}
+
+.float-badge {
+  animation: float-badge 4.4s ease-in-out infinite;
+}
+
+.floating-card {
+  animation: card-rise 0.65s ease both;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 34px, 0);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+  will-change: opacity, transform;
+}
+
+.reveal-left {
+  transform: translate3d(34px, 0, 0);
+}
+
+.reveal-right {
+  transform: translate3d(-34px, 0, 0);
+}
+
+.reveal-down {
+  transform: translate3d(0, -34px, 0);
+}
+
+.reveal-none {
+  transform: none;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.ambient {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(42px);
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+.ambient-one {
+  left: -8rem;
+  top: 6rem;
+  width: 20rem;
+  height: 20rem;
+  background: rgba(242, 198, 182, 0.6);
+  animation: ambient-one 18s ease-in-out infinite;
+}
+
+.ambient-two {
+  right: -8rem;
+  top: 34%;
+  width: 22rem;
+  height: 22rem;
+  background: rgba(234, 169, 142, 0.36);
+  animation: ambient-two 22s ease-in-out infinite;
+}
+
+.ambient-three {
+  bottom: 0;
+  left: 34%;
+  width: 17rem;
+  height: 17rem;
+  background: rgba(255, 217, 200, 0.52);
+}
+
+.marquee-track {
+  animation: marquee 26s linear infinite;
+}
+
+@keyframes header-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-80px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-copy {
+  from {
+    opacity: 0;
+    transform: translateY(34px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-visual {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pulse-soft {
+  0%, 100% {
+    opacity: 0.58;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.88;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes float-badge {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(4deg);
+  }
+}
+
+@keyframes card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ambient-one {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(50px, 46px, 0) scale(1.08);
+  }
+}
+
+@keyframes ambient-two {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-54px, -35px, 0) scale(0.94);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 640px) {
+  .ambient {
+    filter: blur(28px);
+    opacity: 0.72;
+  }
+
+  .card-glass {
+    backdrop-filter: blur(6px);
+  }
+
+  .soft-shadow {
+    box-shadow: 0 14px 34px rgba(83, 43, 32, 0.10);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.001ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 }
