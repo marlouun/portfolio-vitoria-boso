@@ -35,10 +35,6 @@ export const projects: Project[] = [
         src: `${imageBase}images/vitoria/futebol/movimento.webp`,
         alt: 'Jogador de futebol chutando a bola em direção ao gol',
       },
-      {
-        src: `${imageBase}images/vitoria/futebol/gol.webp`,
-        alt: 'Jogador finalizando uma jogada diante do goleiro',
-      },
     ],
   },
   {
@@ -54,12 +50,8 @@ export const projects: Project[] = [
     coverCaption: 'Fé em Silêncio • ensaio documental',
     gallery: [
       {
-        src: `${imageBase}images/vitoria/igreja/velas.webp`,
-        alt: 'Pessoa segurando uma vela durante uma celebração religiosa',
-      },
-      {
-        src: `${imageBase}images/vitoria/igreja/gesto.webp`,
-        alt: 'Gesto ritual registrado em preto e branco dentro da igreja',
+        src: `${imageBase}images/vitoria/igreja/rosario.webp`,
+        alt: 'Mãos segurando um terço em silhueta contra o céu',
       },
     ],
   },
@@ -78,10 +70,6 @@ export const projects: Project[] = [
       {
         src: `${imageBase}images/vitoria/batizado/familia.webp`,
         alt: 'Bebê no colo da família durante a celebração do batizado',
-      },
-      {
-        src: `${imageBase}images/vitoria/batizado/retrato.webp`,
-        alt: 'Retrato de bebê com roupa branca antes da celebração',
       },
     ],
   },
