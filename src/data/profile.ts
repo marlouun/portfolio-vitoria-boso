@@ -14,5 +14,5 @@ export const profile = {
     'O resultado é uma fotografia de linguagem sensível e documental — imagens que registram o que aconteceu, mas também deixam espaço para lembrar de como aquilo foi vivido.',
   instagram: 'https://www.instagram.com/_framesby.vi',
   instagramLabel: '@_framesby.vi',
-  heroImage: `${imageBase}images/vitoria/hero-rosario.webp`,
+  heroImage: `${imageBase}images/vitoria/igreja/rosario.webp`,
 };
