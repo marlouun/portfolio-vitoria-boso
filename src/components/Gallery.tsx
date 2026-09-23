@@ -11,7 +11,7 @@ export function Gallery() {
             <p className="section-kicker text-[#f2c6b6]">Galeria</p>
             <div className="mt-3 grid gap-5 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
               <h2 className="text-4xl font-black tracking-tight sm:text-5xl">Fotos com destaque, ritmo visual e layout mobile-first.</h2>
-              <p className="text-base leading-7 text-zinc-300">Coloque as fotos reais na pasta <strong>public/images/gallery</strong> e atualize o arquivo <strong>src/data/gallery.ts</strong>.</p>
+              <p className="text-base leading-7 text-zinc-300">Registros de detalhes, processo, produção e resultados que complementam os projetos apresentados.</p>
             </div>
           </Reveal>
 
@@ -30,7 +30,7 @@ export function Gallery() {
                   />
                   <figcaption className="flex items-center justify-between p-4 text-sm font-black text-white">
                     {item.title}
-                    <span className="text-[#f2c6b6] transition group-hover:rotate-45">✦</span>
+                    <span className="text-[#f2c6b6] transition group-hover:rotate-45" aria-hidden="true">✦</span>
                   </figcaption>
                 </figure>
               </Reveal>

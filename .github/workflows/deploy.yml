@@ -27,18 +27,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-
-      - name: Ativar pnpm
-        run: corepack enable
-
-      - name: Preparar pnpm
-        run: corepack prepare pnpm@9.15.4 --activate
+          cache: npm
 
       - name: Instalar dependencias
-        run: pnpm install --no-frozen-lockfile
+        run: npm ci
 
       - name: Gerar build
-        run: pnpm run build
+        run: npm run build
 
       - name: Configurar Pages
         uses: actions/configure-pages@v5
