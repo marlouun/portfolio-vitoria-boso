@@ -1,14 +1,6 @@
-# Frames by Vi — Vitória Boso
+# Portfólio Vitória Boso
 
-Portfólio de fotografia autoral e documental de Vitória Boso. A landing page foi estruturada para apresentar os projetos como histórias visuais, com foco em atmosfera, gesto, luz, memória e afeto.
-
-## Projetos em destaque
-
-- **Entre Linhas** — futebol, movimento e espera sob a luz noturna;
-- **Fé em Silêncio** — rito, devoção e pequenos gestos;
-- **Água, Luz e Começo** — batizado, família e memória afetiva.
-
-As fotografias usadas no site ficam em `public/images/vitoria/` e o conteúdo editorial dos projetos em `src/data/projects.ts`.
+Landing page de portfólio desenvolvida com React, Vite, TypeScript e Tailwind CSS.
 
 ## Tecnologias
 
@@ -21,13 +13,11 @@ As fotografias usadas no site ficam em `public/images/vitoria/` e o conteúdo ed
 
 ## Rodar localmente
 
-Requisitos: Node.js 22, Corepack e pnpm 9.15.4.
+Requisitos: Node.js 22 e npm.
 
 ```bash
-corepack enable
-corepack prepare pnpm@9.15.4 --activate
-pnpm install
-pnpm run dev
+npm install
+npm run dev
 ```
 
 A aplicação ficará disponível em:
@@ -39,15 +29,19 @@ http://localhost:5173
 ## Validar a versão de produção
 
 ```bash
-pnpm run build
-pnpm run preview
+npm run build
+npm run preview
 ```
 
 O build final é gerado na pasta `dist/`.
 
 ## GitHub Pages
 
-O workflow `.github/workflows/deploy.yml` valida o build em pull requests e publica no GitHub Pages somente após mudanças na `main`.
+O deploy é feito automaticamente pelo workflow:
+
+```txt
+.github/workflows/deploy.yml
+```
 
 No GitHub, configure:
 
@@ -67,17 +61,19 @@ O `vite.config.ts` utiliza:
 base: './',
 ```
 
+Isso mantém os assets relativos ao caminho em que a aplicação é publicada.
+
 ## Editar conteúdo
 
-- `src/data/profile.ts`: posicionamento, textos principais e Instagram;
-- `src/data/projects.ts`: títulos, textos curatoriais e seleção de imagens;
-- `public/images/vitoria/`: fotografias otimizadas utilizadas no portfólio;
-- `src/index.css`: identidade visual editorial e comportamento responsivo.
+Os dados principais ficam separados da interface:
+
+- `src/data/profile.ts`: nome, apresentação e canais de contato
+- `src/data/projects.ts`: projetos e trabalhos
+- `src/data/gallery.ts`: itens da galeria
+- `public/images/`: imagens utilizadas pelo site
 
 ## Performance e acessibilidade
 
-O projeto utiliza animações em CSS e `IntersectionObserver`, imagens secundárias com carregamento preguiçoso, arquivos WebP otimizados e suporte a `prefers-reduced-motion`.
+O projeto utiliza animações em CSS e `IntersectionObserver`, imagens secundárias com carregamento preguiçoso e suporte a `prefers-reduced-motion`.
 
-## Dependências
-
-O projeto usa pnpm no desenvolvimento e no CI. O lockfile npm anterior foi removido porque continha URLs de um registry interno, inadequadas para instalação no GitHub Actions.
+Para imagens reais, prefira arquivos otimizados, como WebP, dimensionados de acordo com o uso no layout.

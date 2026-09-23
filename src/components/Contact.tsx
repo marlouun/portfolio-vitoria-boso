@@ -2,30 +2,40 @@ import { profile } from '../data/profile';
 import { Reveal } from './Reveal';
 
 export function Contact() {
+  const links = [
+    { href: profile.whatsapp, label: 'WhatsApp', icon: '☏' },
+    { href: profile.instagram, label: 'Instagram', icon: '◎' },
+    { href: `mailto:${profile.email}`, label: profile.email, icon: '✉' },
+  ];
+
   return (
-    <section id="contato" className="py-20 sm:py-28">
+    <section id="contato" className="py-16 sm:py-20">
       <div className="container-page">
         <Reveal>
-          <div className="grid gap-10 border-y border-black/10 py-16 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:py-20">
-            <div>
-              <p className="section-kicker">Contato</p>
-              <h2 className="font-editorial mt-5 max-w-4xl text-5xl leading-[0.94] tracking-[-0.045em] sm:text-6xl lg:text-7xl">
-                Se uma história merece ser sentida de novo, talvez mereça ser fotografada.
-              </h2>
-            </div>
+          <div className="relative overflow-hidden rounded-[2.5rem] bg-[#c86d4c] p-8 text-white soft-shadow sm:p-12 lg:p-16">
+            <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-white/16 blur-3xl" aria-hidden="true" />
+            <div className="absolute -bottom-20 left-10 h-52 w-52 rounded-full bg-zinc-950/16 blur-3xl" aria-hidden="true" />
+            <div className="relative grid gap-10 lg:grid-cols-[1fr_0.8fr] lg:items-center">
+              <div>
+                <p className="text-sm font-black uppercase tracking-[0.18em] text-white/75">Contato</p>
+                <h2 className="mt-3 max-w-2xl text-4xl font-black tracking-tight sm:text-5xl">Gostou do trabalho? Vamos transformar ideias em presença visual.</h2>
+                <p className="mt-5 max-w-xl text-lg leading-8 text-white/82">Entre em contato pelos canais ao lado para conversar sobre projetos, parcerias e novas ideias.</p>
+              </div>
 
-            <div className="lg:pb-2">
-              <p className="max-w-md text-base leading-8 text-[#625e57]">
-                Para ensaios, registros, projetos autorais e colaborações, fale com a Vitória pelo Instagram.
-              </p>
-              <a
-                href={profile.instagram}
-                target="_blank"
-                rel="noreferrer"
-                className="focus-ring mt-7 inline-flex rounded-full bg-[#191714] px-6 py-3.5 text-xs font-bold uppercase tracking-[0.16em] text-[#f3f0ea] transition hover:-translate-y-0.5"
-              >
-                {profile.instagramLabel} ↗
-              </a>
+              <div className="grid gap-3">
+                {links.map((link, index) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="focus-ring contact-link flex items-center gap-4 rounded-3xl bg-white p-5 font-black text-zinc-950 transition duration-300 hover:translate-x-2"
+                    target={link.href.startsWith('http') ? '_blank' : undefined}
+                    rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
+                    style={{ transitionDelay: `${index * 0.03}s` }}
+                  >
+                    <span className="text-2xl text-[#c86d4c]" aria-hidden="true">{link.icon}</span> {link.label}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </Reveal>
