@@ -2,44 +2,43 @@ import { profile } from '../data/profile';
 import { Reveal } from './Reveal';
 
 export function About() {
-  const cards = [
-    { icon: '♡', title: 'Estilo autoral', text: 'Uma apresentação pensada para valorizar imagens, história e personalidade.' },
-    { icon: '⌖', title: profile.location, text: 'Aberta para projetos, parcerias e novas oportunidades criativas.' },
-  ];
-
   return (
-    <section id="sobre" className="py-16 sm:py-20">
-      <div className="container-page grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
-        <Reveal direction="right" className="relative">
-          <div className="absolute -inset-4 rounded-[2.5rem] bg-[#f2c6b6]/32 blur-2xl" aria-hidden="true" />
-          <img
-            src={profile.profileImage}
-            alt="Foto de perfil de Vitória Boso"
-            className="soft-shadow relative aspect-square w-full rounded-[2.5rem] border-8 border-white object-cover transition duration-500 hover:rotate-1 hover:scale-[1.01]"
-            loading="lazy"
-            decoding="async"
-            width="900"
-            height="900"
-          />
-        </Reveal>
+    <section id="sobre" className="py-20 sm:py-28">
+      <div className="container-page">
+        <Reveal>
+          <div className="grid gap-10 border-b border-black/10 pb-16 lg:grid-cols-[0.68fr_1.32fr] lg:gap-20">
+            <div>
+              <p className="section-kicker">O olhar</p>
+              <p className="mt-5 max-w-xs text-sm leading-6 text-[#777168]">
+                Fotografia autoral para histórias reais, sem apagar aquilo que torna cada momento único.
+              </p>
+            </div>
 
-        <Reveal direction="left" delay={0.06}>
-          <div className="card-glass rounded-[2rem] p-7 soft-shadow sm:p-10">
-            <p className="section-kicker">Sobre ela</p>
-            <h2 className="mt-3 text-4xl font-black tracking-tight text-zinc-950 sm:text-5xl">Criatividade com identidade e cuidado em cada detalhe.</h2>
-            <p className="mt-6 text-lg leading-8 text-zinc-700">{profile.shortBio}</p>
-
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {cards.map((item) => (
-                <div key={item.title} className="rounded-3xl bg-white p-5 transition duration-300 hover:-translate-y-2">
-                  <span className="text-2xl text-[#c86d4c]" aria-hidden="true">{item.icon}</span>
-                  <h3 className="mt-4 text-xl font-black">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-zinc-600">{item.text}</p>
-                </div>
-              ))}
+            <div>
+              <h2 className="font-editorial max-w-4xl text-5xl leading-[0.95] tracking-[-0.045em] text-[#191714] sm:text-6xl lg:text-7xl">
+                Fotografia para sentir, não apenas recordar.
+              </h2>
             </div>
           </div>
         </Reveal>
+
+        <div className="grid gap-10 pt-14 lg:grid-cols-2 lg:gap-20">
+          <Reveal direction="right">
+            <p className="font-editorial max-w-xl text-3xl leading-[1.08] tracking-[-0.025em] text-[#38342f] sm:text-4xl">
+              “Meu interesse está no que acontece entre um momento e outro: o gesto que dura pouco, a luz que muda, a emoção que não foi ensaiada.”
+            </p>
+          </Reveal>
+
+          <Reveal direction="left" delay={0.06}>
+            <div className="max-w-xl space-y-5 text-base leading-8 text-[#625e57] sm:text-lg">
+              <p>{profile.shortBio}</p>
+              <p>{profile.approach}</p>
+              <p className="pt-3 text-xs font-bold uppercase tracking-[0.18em] text-[#9f5b45]">
+                {profile.name} • {profile.role}
+              </p>
+            </div>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

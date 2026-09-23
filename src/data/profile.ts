@@ -2,19 +2,17 @@ const imageBase = import.meta.env.BASE_URL;
 
 export const profile = {
   name: 'Vitória Boso',
-  role: 'Criadora de experiências visuais e projetos criativos',
-  headline: 'Um portfólio elegante para apresentar personalidade, criatividade e trabalhos com impacto.',
+  brand: 'frames by vi.',
+  role: 'fotografia autoral e documental',
+  eyebrow: 'Fotografia autoral • Vitória Boso',
+  headline: 'Fotografar é guardar o que o instante fez sentir.',
+  intro:
+    'Entre luz, gesto e silêncio, Vitória transforma momentos reais em imagens que preservam atmosfera, presença e memória.',
   shortBio:
-    'Vitória transforma ideias em composições visuais marcantes. Este espaço reúne sua trajetória, seus trabalhos e uma galeria pensada para destacar seu estilo com elegância.',
-  location: 'Brasil',
-  email: 'vitoria@email.com',
-  whatsapp: 'https://wa.me/5500000000000',
-  instagram: 'https://instagram.com/',
-  profileImage: `${imageBase}images/profile-vitoria.svg`,
-  heroImage: `${imageBase}images/hero-vitoria.svg`,
-  stats: [
-    { value: '12+', label: 'Projetos criativos' },
-    { value: '4', label: 'Áreas de atuação' },
-    { value: '100%', label: 'Foco em detalhes' },
-  ],
+    'O trabalho da Vitória parte da observação. Em vez de transformar cada cena em pose, ela procura aquilo que já existe: um olhar, um movimento, uma pausa, a relação entre as pessoas e a luz daquele momento.',
+  approach:
+    'O resultado é uma fotografia de linguagem sensível e documental — imagens que registram o que aconteceu, mas também deixam espaço para lembrar de como aquilo foi vivido.',
+  instagram: 'https://www.instagram.com/_framesby.vi',
+  instagramLabel: '@_framesby.vi',
+  heroImage: `${imageBase}images/vitoria/igreja/rosario.webp`,
 };
