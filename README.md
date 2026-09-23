@@ -1,6 +1,14 @@
-# Portfólio Vitória Boso
+# Frames by Vi — Vitória Boso
 
-Landing page de portfólio desenvolvida com React, Vite, TypeScript e Tailwind CSS.
+Portfólio de fotografia autoral e documental de Vitória Boso. A landing page foi estruturada para apresentar os projetos como histórias visuais, com foco em atmosfera, gesto, luz, memória e afeto.
+
+## Projetos em destaque
+
+- **Entre Linhas** — futebol, movimento e espera sob a luz noturna;
+- **Fé em Silêncio** — rito, devoção e pequenos gestos;
+- **Água, Luz e Começo** — batizado, família e memória afetiva.
+
+As fotografias usadas no site ficam em `public/images/vitoria/` e o conteúdo editorial dos projetos em `src/data/projects.ts`.
 
 ## Tecnologias
 
@@ -37,11 +45,7 @@ O build final é gerado na pasta `dist/`.
 
 ## GitHub Pages
 
-O deploy é feito automaticamente pelo workflow:
-
-```txt
-.github/workflows/deploy.yml
-```
+O workflow `.github/workflows/deploy.yml` valida o build em pull requests e publica no GitHub Pages somente após mudanças na `main`.
 
 No GitHub, configure:
 
@@ -61,19 +65,13 @@ O `vite.config.ts` utiliza:
 base: './',
 ```
 
-Isso mantém os assets relativos ao caminho em que a aplicação é publicada.
-
 ## Editar conteúdo
 
-Os dados principais ficam separados da interface:
-
-- `src/data/profile.ts`: nome, apresentação e canais de contato
-- `src/data/projects.ts`: projetos e trabalhos
-- `src/data/gallery.ts`: itens da galeria
-- `public/images/`: imagens utilizadas pelo site
+- `src/data/profile.ts`: posicionamento, textos principais e Instagram;
+- `src/data/projects.ts`: títulos, textos curatoriais e seleção de imagens;
+- `public/images/vitoria/`: fotografias otimizadas utilizadas no portfólio;
+- `src/index.css`: identidade visual editorial e comportamento responsivo.
 
 ## Performance e acessibilidade
 
-O projeto utiliza animações em CSS e `IntersectionObserver`, imagens secundárias com carregamento preguiçoso e suporte a `prefers-reduced-motion`.
-
-Para imagens reais, prefira arquivos otimizados, como WebP, dimensionados de acordo com o uso no layout.
+O projeto utiliza animações em CSS e `IntersectionObserver`, imagens secundárias com carregamento preguiçoso, arquivos WebP otimizados e suporte a `prefers-reduced-motion`.
