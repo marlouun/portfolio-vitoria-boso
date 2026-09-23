@@ -67,7 +67,7 @@ export function Projects() {
                   </Reveal>
                 </div>
 
-                <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:ml-[18%] lg:mt-14">
+                <div className="mt-10 lg:ml-[24%] lg:mt-14 lg:max-w-[62%]">
                   {project.gallery.map((image, imageIndex) => (
                     <Reveal key={image.src} delay={imageIndex * 0.05}>
                       <figure className="overflow-hidden">
