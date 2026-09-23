@@ -21,11 +21,13 @@ As fotografias usadas no site ficam em `public/images/vitoria/` e o conteúdo ed
 
 ## Rodar localmente
 
-Requisitos: Node.js 22 e npm.
+Requisitos: Node.js 22, Corepack e pnpm 9.15.4.
 
 ```bash
-npm install
-npm run dev
+corepack enable
+corepack prepare pnpm@9.15.4 --activate
+pnpm install
+pnpm run dev
 ```
 
 A aplicação ficará disponível em:
@@ -37,8 +39,8 @@ http://localhost:5173
 ## Validar a versão de produção
 
 ```bash
-npm run build
-npm run preview
+pnpm run build
+pnpm run preview
 ```
 
 O build final é gerado na pasta `dist/`.
@@ -75,3 +77,7 @@ base: './',
 ## Performance e acessibilidade
 
 O projeto utiliza animações em CSS e `IntersectionObserver`, imagens secundárias com carregamento preguiçoso, arquivos WebP otimizados e suporte a `prefers-reduced-motion`.
+
+## Dependências
+
+O projeto usa pnpm no desenvolvimento e no CI. O lockfile npm anterior foi removido porque continha URLs de um registry interno, inadequadas para instalação no GitHub Actions.
