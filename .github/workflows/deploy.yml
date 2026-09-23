@@ -30,13 +30,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
+
+      - name: Ativar pnpm
+        run: corepack enable
+
+      - name: Preparar pnpm
+        run: corepack prepare pnpm@9.15.4 --activate
 
       - name: Instalar dependencias
-        run: npm ci
+        run: pnpm install --no-frozen-lockfile
 
       - name: Gerar build
-        run: npm run build
+        run: pnpm run build
 
       - name: Configurar Pages
         if: github.event_name != 'pull_request'
