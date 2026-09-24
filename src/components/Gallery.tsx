@@ -22,11 +22,15 @@ export function Gallery() {
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="h-80 w-full object-cover opacity-90 transition duration-700 group-hover:scale-105 group-hover:opacity-100"
+                    className="h-80 w-full select-none object-cover opacity-90 transition duration-700 group-hover:scale-105 group-hover:opacity-100"
                     loading="lazy"
                     decoding="async"
                     width="700"
                     height="900"
+                    draggable={false}
+                    onContextMenu={(event) => event.preventDefault()}
+                    onDragStart={(event) => event.preventDefault()}
+                    onCopy={(event) => event.preventDefault()}
                   />
                   <figcaption className="flex items-center justify-between p-4 text-sm font-black text-white">
                     {item.title}
