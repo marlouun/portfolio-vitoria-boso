@@ -1,9 +1,28 @@
 import { profile } from '../data/profile';
 import { Reveal } from './Reveal';
 
+function InstagramIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-6 w-6"
+      aria-hidden="true"
+    >
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
 export function Contact() {
   const links = [
-    { href: profile.instagram, label: '@_framesby.vi', icon: '◎' },
+    { href: profile.instagram, label: '@_framesby.vi', icon: 'instagram' },
     { href: profile.highlights, label: 'Destaques no Instagram', icon: '✦' },
     { href: '#projetos', label: 'Ver projetos', icon: '↗' },
   ];
@@ -32,7 +51,10 @@ export function Contact() {
                     rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
                     style={{ transitionDelay: `${index * 0.03}s` }}
                   >
-                    <span className="text-2xl text-[#c86d4c]" aria-hidden="true">{link.icon}</span> {link.label}
+                    <span className="flex h-7 w-7 items-center justify-center text-2xl text-[#c86d4c]" aria-hidden="true">
+                      {link.icon === 'instagram' ? <InstagramIcon /> : link.icon}
+                    </span>
+                    {link.label}
                   </a>
                 ))}
               </div>
