@@ -12,26 +12,29 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: 1,
-    title: 'Ensaio Criativo',
-    category: 'Fotografia',
-    description: 'Projeto visual com direção delicada, luz natural e composição pensada para destacar personalidade.',
-    image: `${imageBase}images/projects/projeto-1.svg`,
-    highlight: 'Direção visual',
+    title: 'Entre Linhas',
+    category: 'Fotografia esportiva',
+    description:
+      'Um ensaio que acompanha o ritmo da partida sem perder os instantes de pausa. Movimento, luz noturna e expressão se misturam para mostrar o jogo para além do placar.',
+    image: `${imageBase}images/vitoria/futebol/IMG_0504.jpg`,
+    highlight: 'Movimento • luz • atmosfera',
   },
   {
     id: 2,
-    title: 'Campanha Social',
-    category: 'Conteúdo digital',
-    description: 'Sequência de peças para redes sociais com linguagem moderna, forte presença visual e identidade consistente.',
-    image: `${imageBase}images/projects/projeto-2.svg`,
-    highlight: 'Social media',
+    title: 'Fé em Detalhes',
+    category: 'Fotografia documental',
+    description:
+      'Registros de uma celebração religiosa com atenção aos gestos, símbolos e à luz do ambiente. A proposta é preservar a atmosfera do momento sem interferir no que acontece.',
+    image: `${imageBase}images/vitoria/igreja/IMG_0614.jpg`,
+    highlight: 'Rito • silêncio • presença',
   },
   {
     id: 3,
-    title: 'Editorial Minimalista',
-    category: 'Design',
-    description: 'Construção de layout limpo, elegante e focado em imagens para apresentação de trabalhos autorais.',
-    image: `${imageBase}images/projects/projeto-3.svg`,
-    highlight: 'Layout premium',
+    title: 'Memórias de um Começo',
+    category: 'Batizado',
+    description:
+      'Um registro delicado do batizado, construído pelos pequenos detalhes da cerimônia e pelas relações da família. Imagens pensadas para manter viva a sensação daquele dia.',
+    image: `${imageBase}images/vitoria/batizado/IMG_0541.jpg`,
+    highlight: 'Afeto • memória • espontaneidade',
   },
 ];
