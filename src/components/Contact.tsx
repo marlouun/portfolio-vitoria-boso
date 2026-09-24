@@ -3,9 +3,9 @@ import { Reveal } from './Reveal';
 
 export function Contact() {
   const links = [
-    { href: profile.whatsapp, label: 'WhatsApp', icon: '☏' },
-    { href: profile.instagram, label: 'Instagram', icon: '◎' },
-    { href: `mailto:${profile.email}`, label: profile.email, icon: '✉' },
+    { href: profile.instagram, label: '@_framesby.vi', icon: '◎' },
+    { href: profile.highlights, label: 'Destaques no Instagram', icon: '✦' },
+    { href: '#projetos', label: 'Ver projetos', icon: '↗' },
   ];
 
   return (
@@ -18,8 +18,8 @@ export function Contact() {
             <div className="relative grid gap-10 lg:grid-cols-[1fr_0.8fr] lg:items-center">
               <div>
                 <p className="text-sm font-black uppercase tracking-[0.18em] text-white/75">Contato</p>
-                <h2 className="mt-3 max-w-2xl text-4xl font-black tracking-tight sm:text-5xl">Gostou do trabalho? Vamos transformar ideias em presença visual.</h2>
-                <p className="mt-5 max-w-xl text-lg leading-8 text-white/82">Atualize os links de WhatsApp, Instagram e e-mail em <strong>src/data/profile.ts</strong>.</p>
+                <h2 className="mt-3 max-w-2xl text-4xl font-black tracking-tight sm:text-5xl">Gostou do olhar da Vitória? Vamos conversar sobre a sua história.</h2>
+                <p className="mt-5 max-w-xl text-lg leading-8 text-white/82">Acompanhe mais trabalhos, registros e bastidores pelo Instagram ou explore os projetos deste portfólio.</p>
               </div>
 
               <div className="grid gap-3">
