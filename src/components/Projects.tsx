@@ -27,11 +27,15 @@ export function Projects() {
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="h-72 w-full object-cover transition duration-700 group-hover:scale-105"
+                    className="h-72 w-full select-none object-cover transition duration-700 group-hover:scale-105"
                     loading="lazy"
                     decoding="async"
                     width="900"
                     height="720"
+                    draggable={false}
+                    onContextMenu={(event) => event.preventDefault()}
+                    onDragStart={(event) => event.preventDefault()}
+                    onCopy={(event) => event.preventDefault()}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/35 via-transparent to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
                 </div>
