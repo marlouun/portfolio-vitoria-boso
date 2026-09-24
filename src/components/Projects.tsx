@@ -18,7 +18,11 @@ export function Projects() {
         <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => (
             <Reveal key={project.id} delay={index * 0.06}>
-              <article className="group overflow-hidden rounded-[2rem] bg-white/90 p-3 soft-shadow backdrop-blur transition duration-300 hover:-translate-y-3">
+              <a
+                href={`?projeto=${project.slug}`}
+                className="focus-ring group block overflow-hidden rounded-[2rem] bg-white/90 p-3 soft-shadow backdrop-blur transition duration-300 hover:-translate-y-3"
+                aria-label={`Abrir projeto ${project.title}`}
+              >
                 <div className="relative overflow-hidden rounded-[1.5rem]">
                   <img
                     src={project.image}
@@ -40,7 +44,7 @@ export function Projects() {
                   <p className="mt-3 text-sm leading-6 text-zinc-600">{project.description}</p>
                   <p className="mt-5 text-sm font-black text-zinc-950">{project.highlight}</p>
                 </div>
-              </article>
+              </a>
             </Reveal>
           ))}
         </div>
