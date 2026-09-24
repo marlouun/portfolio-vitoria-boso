@@ -2,19 +2,18 @@ const imageBase = import.meta.env.BASE_URL;
 
 export const profile = {
   name: 'Vitória Boso',
-  role: 'Criadora de experiências visuais e projetos criativos',
-  headline: 'Um portfólio elegante para apresentar personalidade, criatividade e trabalhos com impacto.',
+  role: 'Fotógrafa autoral e documental',
+  headline: 'Fotografia com sentimento, presença e verdade em cada história.',
   shortBio:
-    'Vitória transforma ideias em composições visuais marcantes. Este espaço reúne sua trajetória, seus trabalhos e uma galeria pensada para destacar seu estilo com elegância.',
+    'Vitória Boso fotografa momentos reais com um olhar sensível para luz, gesto e atmosfera. Seu trabalho busca preservar não apenas o que aconteceu, mas a sensação de estar ali — em histórias construídas com espontaneidade, memória e identidade.',
   location: 'Brasil',
-  email: 'vitoria@email.com',
-  whatsapp: 'https://wa.me/5500000000000',
-  instagram: 'https://instagram.com/',
-  profileImage: `${imageBase}images/profile-vitoria.svg`,
-  heroImage: `${imageBase}images/hero-vitoria.svg`,
+  instagram: 'https://www.instagram.com/_framesby.vi',
+  highlights: 'https://www.instagram.com/stories/highlights/18084929305949392/',
+  profileImage: `${imageBase}images/vitoria/igreja/IMG_0614.jpg`,
+  heroImage: `${imageBase}images/vitoria/igreja/IMG_0606.jpg`,
   stats: [
-    { value: '12+', label: 'Projetos criativos' },
-    { value: '4', label: 'Áreas de atuação' },
-    { value: '100%', label: 'Foco em detalhes' },
+    { value: 'Autoral', label: 'Olhar sensível' },
+    { value: 'Natural', label: 'Momentos reais' },
+    { value: 'Memória', label: 'Histórias que ficam' },
   ],
 };
