@@ -9,9 +9,9 @@ export function Projects() {
           <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
             <div>
               <p className="section-kicker">Trabalhos</p>
-              <h2 className="mt-3 max-w-2xl text-4xl font-black tracking-tight text-zinc-950 sm:text-5xl">Projetos que chamam atenção logo no primeiro olhar.</h2>
+              <h2 className="mt-3 max-w-2xl text-4xl font-black tracking-tight text-zinc-950 sm:text-5xl">Projetos que contam histórias para além do registro.</h2>
             </div>
-            <p className="max-w-md text-base leading-7 text-zinc-600">Edite os cards no arquivo <strong>src/data/projects.ts</strong>. Troque textos, categorias e imagens quando quiser.</p>
+            <p className="max-w-md text-base leading-7 text-zinc-600">Ensaios com atmosferas diferentes, unidos pelo mesmo olhar: atenção à luz, aos gestos e ao sentimento de cada cena.</p>
           </div>
         </Reveal>
 
