@@ -5,17 +5,8 @@ type ProjectGalleryProps = {
 };
 
 export function ProjectGallery({ project }: ProjectGalleryProps) {
-  const blockImageActions = (event: React.SyntheticEvent) => {
-    event.preventDefault();
-  };
-
   return (
-    <div
-      className="fixed inset-0 z-[80] overflow-y-auto bg-[#fff7f2] text-zinc-950"
-      onContextMenu={blockImageActions}
-      onCopy={blockImageActions}
-      onDragStart={blockImageActions}
-    >
+    <div className="fixed inset-0 z-[80] overflow-y-auto bg-[#fff7f2] text-zinc-950">
       <div className="sticky top-0 z-20 border-b border-white/60 bg-[#fff7f2]/88 backdrop-blur-xl">
         <div className="container-page flex min-h-20 items-center justify-between gap-4 py-3">
           <a
@@ -53,6 +44,9 @@ export function ProjectGallery({ project }: ProjectGalleryProps) {
               <figure
                 key={image}
                 className="relative w-full overflow-hidden rounded-[2rem] bg-white p-2 soft-shadow sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.7rem)]"
+                onContextMenu={(event) => event.preventDefault()}
+                onDragStart={(event) => event.preventDefault()}
+                onCopy={(event) => event.preventDefault()}
               >
                 <img
                   src={image}
@@ -62,16 +56,12 @@ export function ProjectGallery({ project }: ProjectGalleryProps) {
                   decoding="async"
                   draggable={false}
                 />
-                <div className="absolute inset-0 z-10" aria-hidden="true" />
+                <div className="absolute inset-0 z-10 select-none" aria-hidden="true" />
               </figure>
             ))}
           </div>
 
-          <p className="mx-auto mt-8 max-w-xl text-center text-xs font-semibold leading-5 text-zinc-500">
-            As imagens deste portfólio são protegidas contra cópia e arraste na interface.
-          </p>
-
-          <div className="mt-8 flex justify-center">
+          <div className="mt-12 flex justify-center">
             <a
               href="./#projetos"
               className="magnetic-btn focus-ring rounded-full bg-[#c86d4c] px-7 py-4 text-center font-black text-white soft-shadow transition hover:-translate-y-1"
