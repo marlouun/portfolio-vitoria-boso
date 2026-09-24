@@ -9,8 +9,8 @@ export const profile = {
   location: 'Brasil',
   instagram: 'https://www.instagram.com/_framesby.vi',
   highlights: 'https://www.instagram.com/stories/highlights/18084929305949392/',
-  profileImage: `${imageBase}images/vitoria/igreja/IMG_0614.jpg`,
-  heroImage: `${imageBase}images/vitoria/igreja/IMG_0606.jpg`,
+  profileImage: `${imageBase}images/vitoria/igreja/IMG_0614.JPG.jpeg`,
+  heroImage: `${imageBase}images/vitoria/igreja/IMG_0606.JPG.jpeg`,
   stats: [
     { value: 'Autoral', label: 'Olhar sensível' },
     { value: 'Natural', label: 'Momentos reais' },
