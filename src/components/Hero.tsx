@@ -5,16 +5,16 @@ export function Hero() {
     <section id="inicio" className="relative overflow-hidden pb-16 pt-32 sm:pt-36 lg:min-h-screen lg:pb-24">
       <div className="container-page grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <div className="hero-copy">
-          <p className="section-kicker">Portfólio visual</p>
+          <p className="section-kicker">Fotografia autoral</p>
           <h1 className="mt-4 max-w-4xl text-5xl font-black leading-[0.94] tracking-tight text-zinc-950 sm:text-6xl lg:text-7xl">
             {profile.name}
-            <span className="block text-[#c86d4c]">com presença criativa.</span>
+            <span className="block text-[#c86d4c]">com olhar sensível.</span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-700 sm:text-xl">{profile.headline}</p>
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <a href="#projetos" className="magnetic-btn focus-ring rounded-full bg-[#c86d4c] px-7 py-4 text-center font-black text-white soft-shadow transition hover:-translate-y-1">
-              Ver trabalhos
+              Ver projetos
             </a>
             <a href="#galeria" className="focus-ring rounded-full border border-[#e8cdbf] bg-white/75 px-7 py-4 text-center font-black text-zinc-950 backdrop-blur transition hover:-translate-y-1 hover:border-[#c86d4c]">
               Ver galeria
@@ -36,7 +36,7 @@ export function Hero() {
           <div className="soft-shadow relative overflow-hidden rounded-[2.5rem] border-8 border-white bg-white transition duration-500 hover:-rotate-1 hover:scale-[1.01]">
             <img
               src={profile.heroImage}
-              alt="Imagem principal de Vitória Boso"
+              alt="Fotografia autoral de Vitória Boso"
               className="h-[460px] w-full object-cover sm:h-[540px]"
               width="900"
               height="1100"
@@ -44,11 +44,11 @@ export function Hero() {
             />
           </div>
           <div className="card-glass absolute -bottom-7 left-4 right-4 rounded-3xl p-5 soft-shadow sm:left-auto sm:right-8 sm:w-72">
-            <p className="text-sm font-bold text-zinc-500">Especialidade</p>
-            <p className="mt-1 text-xl font-black text-zinc-950">Design delicado, moderno e memorável.</p>
+            <p className="text-sm font-bold text-zinc-500">Linguagem</p>
+            <p className="mt-1 text-xl font-black text-zinc-950">Fotografia artística, sensível e documental.</p>
           </div>
           <div className="float-badge absolute -left-3 top-12 rounded-3xl bg-zinc-950 px-4 py-3 text-sm font-black text-white soft-shadow">
-            ✦ Criativo
+            ✦ Autoral
           </div>
         </div>
       </div>
