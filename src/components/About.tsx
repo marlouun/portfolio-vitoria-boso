@@ -15,11 +15,15 @@ export function About() {
           <img
             src={profile.profileImage}
             alt="Fotografia do portfólio de Vitória Boso"
-            className="soft-shadow relative aspect-square w-full rounded-[2.5rem] border-8 border-white object-cover transition duration-500 hover:rotate-1 hover:scale-[1.01]"
+            className="soft-shadow relative aspect-square w-full select-none rounded-[2.5rem] border-8 border-white object-cover transition duration-500 hover:rotate-1 hover:scale-[1.01]"
             loading="lazy"
             decoding="async"
             width="900"
             height="900"
+            draggable={false}
+            onContextMenu={(event) => event.preventDefault()}
+            onDragStart={(event) => event.preventDefault()}
+            onCopy={(event) => event.preventDefault()}
           />
         </Reveal>
 
