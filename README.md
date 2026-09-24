@@ -1,79 +1,97 @@
-# Portfólio Vitória Boso
+# Portfolio Vitoria Boso
 
-Landing page de portfólio desenvolvida com React, Vite, TypeScript e Tailwind CSS.
+Projeto de portfolio/landing page feito com React, Vite, TypeScript e Tailwind CSS.
 
-## Tecnologias
+Esta versao foi otimizada para ficar mais leve no navegador:
 
-- React 19
-- TypeScript
-- Vite
-- Tailwind CSS
-- GitHub Pages
-- GitHub Actions
+- removida a dependencia `framer-motion`
+- animacoes principais feitas com CSS e IntersectionObserver
+- imagens com `loading="lazy"` e `decoding="async"`
+- menos blur/sombra pesada no mobile
+- build testado com `npm run build`
+- configuracao pronta para GitHub Pages
 
-## Rodar localmente
-
-Requisitos: Node.js 22 e npm.
+## Rodar no VS Code
 
 ```bash
 npm install
 npm run dev
 ```
 
-A aplicação ficará disponível em:
+Depois abra:
 
 ```txt
 http://localhost:5173
 ```
 
-## Validar a versão de produção
+## Testar a versao final localmente
 
 ```bash
 npm run build
 npm run preview
 ```
 
-O build final é gerado na pasta `dist/`.
+Depois abra o endereco que aparecer no terminal.
 
-## GitHub Pages
+## Publicar no GitHub Pages
 
-O deploy é feito automaticamente pelo workflow:
+Este projeto ja esta configurado para GitHub Pages usando GitHub Actions.
+
+No GitHub, va em:
+
+```txt
+Settings > Pages > Build and deployment
+```
+
+Selecione:
+
+```txt
+Source: GitHub Actions
+```
+
+Depois faca commit e push normalmente. O GitHub vai executar o workflow em:
 
 ```txt
 .github/workflows/deploy.yml
 ```
 
-No GitHub, configure:
+O site final ficara em:
 
 ```txt
-Settings > Pages > Build and deployment > Source: GitHub Actions
+https://marlouun.github.io/portfolio-vitoria-boso-pronto/
 ```
 
-Endereço do projeto:
+## Configuracao importante
 
-```txt
-https://marlouun.github.io/portfolio-vitoria-boso/
-```
-
-O `vite.config.ts` utiliza:
+No arquivo `vite.config.ts`, existe esta configuracao:
 
 ```ts
-base: './',
+base: '/portfolio-vitoria-boso-pronto/',
 ```
 
-Isso mantém os assets relativos ao caminho em que a aplicação é publicada.
+Ela e obrigatoria para o GitHub Pages carregar corretamente os arquivos CSS e JavaScript.
 
-## Editar conteúdo
+Se o nome do repositorio mudar, mude essa linha tambem.
 
-Os dados principais ficam separados da interface:
+## Editar conteudo
 
-- `src/data/profile.ts`: nome, apresentação e canais de contato
-- `src/data/projects.ts`: projetos e trabalhos
-- `src/data/gallery.ts`: itens da galeria
-- `public/images/`: imagens utilizadas pelo site
+- `src/data/profile.ts`: informacoes principais da Vitoria
+- `src/data/projects.ts`: projetos/trabalhos
+- `src/data/gallery.ts`: imagens da galeria
+- `public/images/`: fotos e imagens do site
 
-## Performance e acessibilidade
+## Gerar build manual
 
-O projeto utiliza animações em CSS e `IntersectionObserver`, imagens secundárias com carregamento preguiçoso e suporte a `prefers-reduced-motion`.
+```bash
+npm run build
+```
 
-Para imagens reais, prefira arquivos otimizados, como WebP, dimensionados de acordo com o uso no layout.
+A pasta final sera:
+
+```txt
+dist/
+```
+
+## Dica para imagens reais
+
+Quando trocar os bonequinhos por fotos reais, evite imagens muito grandes. O ideal e exportar em `.webp` com tamanho entre 800px e 1400px de largura, dependendo do uso.

@@ -11,7 +11,7 @@ export function Projects() {
               <p className="section-kicker">Trabalhos</p>
               <h2 className="mt-3 max-w-2xl text-4xl font-black tracking-tight text-zinc-950 sm:text-5xl">Projetos que chamam atenção logo no primeiro olhar.</h2>
             </div>
-            <p className="max-w-md text-base leading-7 text-zinc-600">Uma seleção de trabalhos que reúne direção visual, conteúdo e design em diferentes formatos.</p>
+            <p className="max-w-md text-base leading-7 text-zinc-600">Edite os cards no arquivo <strong>src/data/projects.ts</strong>. Troque textos, categorias e imagens quando quiser.</p>
           </div>
         </Reveal>
 
@@ -32,8 +32,11 @@ export function Projects() {
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/35 via-transparent to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
                 </div>
                 <div className="p-5">
-                  <span className="inline-flex rounded-full bg-[#fff1eb] px-3 py-1 text-xs font-black uppercase tracking-wider text-[#c86d4c]">{project.category}</span>
-                  <h3 className="mt-4 text-2xl font-black text-zinc-950">{project.title}</h3>
+                  <div className="mb-4 flex items-center justify-between gap-4">
+                    <span className="rounded-full bg-[#fff1eb] px-3 py-1 text-xs font-black uppercase tracking-wider text-[#c86d4c]">{project.category}</span>
+                    <span className="text-2xl text-zinc-400 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-[#c86d4c]" aria-hidden="true">↗</span>
+                  </div>
+                  <h3 className="text-2xl font-black text-zinc-950">{project.title}</h3>
                   <p className="mt-3 text-sm leading-6 text-zinc-600">{project.description}</p>
                   <p className="mt-5 text-sm font-black text-zinc-950">{project.highlight}</p>
                 </div>

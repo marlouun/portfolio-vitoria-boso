@@ -19,7 +19,7 @@ export function Contact() {
               <div>
                 <p className="text-sm font-black uppercase tracking-[0.18em] text-white/75">Contato</p>
                 <h2 className="mt-3 max-w-2xl text-4xl font-black tracking-tight sm:text-5xl">Gostou do trabalho? Vamos transformar ideias em presença visual.</h2>
-                <p className="mt-5 max-w-xl text-lg leading-8 text-white/82">Entre em contato pelos canais ao lado para conversar sobre projetos, parcerias e novas ideias.</p>
+                <p className="mt-5 max-w-xl text-lg leading-8 text-white/82">Atualize os links de WhatsApp, Instagram e e-mail em <strong>src/data/profile.ts</strong>.</p>
               </div>
 
               <div className="grid gap-3">
