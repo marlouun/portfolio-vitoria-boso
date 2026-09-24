@@ -37,10 +37,14 @@ export function Hero() {
             <img
               src={profile.heroImage}
               alt="Fotografia autoral de Vitória Boso"
-              className="h-[460px] w-full object-cover sm:h-[540px]"
+              className="h-[460px] w-full select-none object-cover sm:h-[540px]"
               width="900"
               height="1100"
               fetchPriority="high"
+              draggable={false}
+              onContextMenu={(event) => event.preventDefault()}
+              onDragStart={(event) => event.preventDefault()}
+              onCopy={(event) => event.preventDefault()}
             />
           </div>
           <div className="card-glass absolute -bottom-7 left-4 right-4 rounded-3xl p-5 soft-shadow sm:left-auto sm:right-8 sm:w-72">
