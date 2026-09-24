@@ -10,8 +10,8 @@ export function Gallery() {
           <Reveal>
             <p className="section-kicker text-[#f2c6b6]">Galeria</p>
             <div className="mt-3 grid gap-5 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
-              <h2 className="text-4xl font-black tracking-tight sm:text-5xl">Fotos com destaque, ritmo visual e layout mobile-first.</h2>
-              <p className="text-base leading-7 text-zinc-300">Coloque as fotos reais na pasta <strong>public/images/gallery</strong> e atualize o arquivo <strong>src/data/gallery.ts</strong>.</p>
+              <h2 className="text-4xl font-black tracking-tight sm:text-5xl">Recortes de histórias, luz e presença.</h2>
+              <p className="text-base leading-7 text-zinc-300">Uma seleção de imagens que atravessa movimento, fé e afeto — diferentes cenas conectadas pelo olhar da Vitória.</p>
             </div>
           </Reveal>
 
@@ -22,11 +22,15 @@ export function Gallery() {
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="h-80 w-full object-cover opacity-90 transition duration-700 group-hover:scale-105 group-hover:opacity-100"
+                    className="h-80 w-full select-none object-cover opacity-90 transition duration-700 group-hover:scale-105 group-hover:opacity-100"
                     loading="lazy"
                     decoding="async"
                     width="700"
                     height="900"
+                    draggable={false}
+                    onContextMenu={(event) => event.preventDefault()}
+                    onDragStart={(event) => event.preventDefault()}
+                    onCopy={(event) => event.preventDefault()}
                   />
                   <figcaption className="flex items-center justify-between p-4 text-sm font-black text-white">
                     {item.title}

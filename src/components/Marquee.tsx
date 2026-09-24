@@ -1,4 +1,4 @@
-const words = ['Portfólio', 'Design', 'Fotografia', 'Identidade', 'Criatividade', 'Mobile-first'];
+const words = ['Fotografia', 'Luz', 'Movimento', 'Memória', 'Presença', 'Afeto'];
 
 export function Marquee() {
   const content = [...words, ...words, ...words, ...words];
