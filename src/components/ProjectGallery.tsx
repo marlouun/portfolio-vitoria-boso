@@ -5,8 +5,17 @@ type ProjectGalleryProps = {
 };
 
 export function ProjectGallery({ project }: ProjectGalleryProps) {
+  const blockImageActions = (event: React.SyntheticEvent) => {
+    event.preventDefault();
+  };
+
   return (
-    <div className="fixed inset-0 z-[80] overflow-y-auto bg-[#fff7f2] text-zinc-950">
+    <div
+      className="fixed inset-0 z-[80] overflow-y-auto bg-[#fff7f2] text-zinc-950"
+      onContextMenu={blockImageActions}
+      onCopy={blockImageActions}
+      onDragStart={blockImageActions}
+    >
       <div className="sticky top-0 z-20 border-b border-white/60 bg-[#fff7f2]/88 backdrop-blur-xl">
         <div className="container-page flex min-h-20 items-center justify-between gap-4 py-3">
           <a
@@ -39,24 +48,30 @@ export function ProjectGallery({ project }: ProjectGalleryProps) {
             </div>
           </div>
 
-          <div className="mt-10 columns-1 gap-4 sm:columns-2 lg:columns-3">
+          <div className="mt-10 flex flex-wrap justify-center gap-4">
             {project.gallery.map((image, index) => (
               <figure
                 key={image}
-                className="mb-4 break-inside-avoid overflow-hidden rounded-[2rem] bg-white p-2 soft-shadow"
+                className="relative w-full overflow-hidden rounded-[2rem] bg-white p-2 soft-shadow sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.7rem)]"
               >
                 <img
                   src={image}
                   alt={`${project.title} — fotografia ${index + 1}`}
-                  className="h-auto w-full rounded-[1.5rem]"
+                  className="pointer-events-none h-auto w-full select-none rounded-[1.5rem]"
                   loading={index < 3 ? 'eager' : 'lazy'}
                   decoding="async"
+                  draggable={false}
                 />
+                <div className="absolute inset-0 z-10" aria-hidden="true" />
               </figure>
             ))}
           </div>
 
-          <div className="mt-12 flex justify-center">
+          <p className="mx-auto mt-8 max-w-xl text-center text-xs font-semibold leading-5 text-zinc-500">
+            As imagens deste portfólio são protegidas contra cópia e arraste na interface.
+          </p>
+
+          <div className="mt-8 flex justify-center">
             <a
               href="./#projetos"
               className="magnetic-btn focus-ring rounded-full bg-[#c86d4c] px-7 py-4 text-center font-black text-white soft-shadow transition hover:-translate-y-1"
