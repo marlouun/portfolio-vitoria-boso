@@ -9,9 +9,9 @@ export function Projects() {
           <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
             <div>
               <p className="section-kicker">Trabalhos</p>
-              <h2 className="mt-3 max-w-2xl text-4xl font-black tracking-tight text-zinc-950 sm:text-5xl">Projetos que contam histórias para além do registro.</h2>
+              <h2 className="mt-3 max-w-2xl text-4xl font-black tracking-tight text-[#122d48] sm:text-5xl">Projetos que contam histórias para além do registro.</h2>
             </div>
-            <p className="max-w-md text-base leading-7 text-zinc-600">Ensaios com atmosferas diferentes, unidos pelo mesmo olhar: atenção à luz, aos gestos e ao sentimento de cada cena.</p>
+            <p className="max-w-md text-base leading-7 text-[#122d48]/68">Ensaios com atmosferas diferentes, unidos pelo mesmo olhar: atenção à luz, aos gestos e ao sentimento de cada cena.</p>
           </div>
         </Reveal>
 
@@ -37,16 +37,16 @@ export function Projects() {
                     onDragStart={(event) => event.preventDefault()}
                     onCopy={(event) => event.preventDefault()}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/35 via-transparent to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#122d48]/35 via-transparent to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
                 </div>
                 <div className="flex flex-1 flex-col p-5">
                   <div className="mb-4 flex items-center justify-between gap-4">
-                    <span className="rounded-full bg-[#fff1eb] px-3 py-1 text-xs font-black uppercase tracking-wider text-[#c86d4c]">{project.category}</span>
-                    <span className="text-2xl text-zinc-400 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-[#c86d4c]" aria-hidden="true">↗</span>
+                    <span className="rounded-full bg-[#c8d4e0]/45 px-3 py-1 text-xs font-black uppercase tracking-wider text-[#122d48]">{project.category}</span>
+                    <span className="text-2xl text-[#55779c]/70 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-[#dcbe7e]" aria-hidden="true">↗</span>
                   </div>
-                  <h3 className="text-2xl font-black text-zinc-950">{project.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-zinc-600">{project.description}</p>
-                  <p className="mt-auto pt-5 text-sm font-black text-zinc-950">{project.highlight}</p>
+                  <h3 className="text-2xl font-black text-[#122d48]">{project.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-[#122d48]/68">{project.description}</p>
+                  <p className="mt-auto pt-5 text-sm font-black text-[#122d48]">{project.highlight}</p>
                 </div>
               </a>
             </Reveal>

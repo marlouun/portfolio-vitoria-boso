@@ -5,13 +5,13 @@ export function Gallery() {
   return (
     <section id="galeria" className="py-16 sm:py-20">
       <div className="container-page">
-        <div className="relative overflow-hidden rounded-[2.5rem] bg-zinc-950 p-6 text-white soft-shadow sm:p-10">
-          <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#c86d4c]/25 blur-3xl" aria-hidden="true" />
+        <div className="relative overflow-hidden rounded-[2.5rem] bg-[#122d48] p-6 text-white soft-shadow sm:p-10">
+          <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#f0cf66]/22 blur-3xl" aria-hidden="true" />
           <Reveal>
-            <p className="section-kicker text-[#f2c6b6]">Galeria</p>
+            <p className="section-kicker text-[#eddbb7]">Galeria</p>
             <div className="mt-3 grid gap-5 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
               <h2 className="text-4xl font-black tracking-tight sm:text-5xl">Recortes de histórias, luz e presença.</h2>
-              <p className="text-base leading-7 text-zinc-300">Uma seleção de imagens que atravessa movimento, fé e afeto — diferentes cenas conectadas pelo olhar da Vitória.</p>
+              <p className="text-base leading-7 text-[#c8d4e0]">Uma seleção de imagens que atravessa movimento, fé e afeto — diferentes cenas conectadas pelo olhar da Vitória.</p>
             </div>
           </Reveal>
 
@@ -34,7 +34,7 @@ export function Gallery() {
                   />
                   <figcaption className="flex items-center justify-between p-4 text-sm font-black text-white">
                     {item.title}
-                    <span className="text-[#f2c6b6] transition group-hover:rotate-45">✦</span>
+                    <span className="text-[#dcbe7e] transition group-hover:rotate-45">✦</span>
                   </figcaption>
                 </figure>
               </Reveal>
