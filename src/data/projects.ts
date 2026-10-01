@@ -26,7 +26,6 @@ export const projects: Project[] = [
       `${imageBase}images/vitoria/futebol/IMG_0502.PNG`,
       `${imageBase}images/vitoria/futebol/IMG_0503.JPG.jpeg`,
       `${imageBase}images/vitoria/futebol/IMG_0504.JPG.jpeg`,
-      `${imageBase}images/vitoria/futebol/IMG_0505.JPG.jpeg`,
     ],
   },
   {
