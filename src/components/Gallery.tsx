@@ -34,7 +34,7 @@ export function Gallery() {
                   />
                   <figcaption className="flex items-center justify-between p-4 text-sm font-black text-white">
                     {item.title}
-                    <span className="text-[#eddbb7] transition group-hover:rotate-45">✦</span>
+                    <span className="text-[#dcbe7e] transition group-hover:rotate-45">✦</span>
                   </figcaption>
                 </figure>
               </Reveal>
