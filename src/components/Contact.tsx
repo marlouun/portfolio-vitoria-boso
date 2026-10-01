@@ -50,9 +50,9 @@ export function Contact() {
     <section id="contato" className="py-16 sm:py-20">
       <div className="container-page">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[2.5rem] bg-[#c86d4c] p-8 text-white soft-shadow sm:p-12 lg:p-16">
+          <div className="relative overflow-hidden rounded-[2.5rem] bg-[#122d48] p-8 text-white soft-shadow sm:p-12 lg:p-16">
             <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-white/16 blur-3xl" aria-hidden="true" />
-            <div className="absolute -bottom-20 left-10 h-52 w-52 rounded-full bg-zinc-950/16 blur-3xl" aria-hidden="true" />
+            <div className="absolute -bottom-20 left-10 h-52 w-52 rounded-full bg-[#f0cf66]/16 blur-3xl" aria-hidden="true" />
             <div className="relative grid gap-10 lg:grid-cols-[1fr_0.8fr] lg:items-center">
               <div>
                 <p className="text-sm font-black uppercase tracking-[0.18em] text-white/75">Contato</p>
@@ -65,12 +65,12 @@ export function Contact() {
                   <a
                     key={link.label}
                     href={link.href}
-                    className="focus-ring contact-link flex items-center gap-4 rounded-3xl bg-white p-5 font-black text-zinc-950 transition duration-300 hover:translate-x-2"
+                    className="focus-ring contact-link flex items-center gap-4 rounded-3xl bg-white p-5 font-black text-[#122d48] transition duration-300 hover:translate-x-2"
                     target={link.href.startsWith('http') ? '_blank' : undefined}
                     rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
                     style={{ transitionDelay: `${index * 0.03}s` }}
                   >
-                    <span className="flex h-7 w-7 items-center justify-center text-2xl text-[#c86d4c]" aria-hidden="true">
+                    <span className="flex h-7 w-7 items-center justify-center text-2xl text-[#dcbe7e]" aria-hidden="true">
                       {link.icon === 'instagram' ? <InstagramIcon /> : link.icon === 'whatsapp' ? <WhatsAppIcon /> : link.icon}
                     </span>
                     {link.label}
