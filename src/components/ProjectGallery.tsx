@@ -6,7 +6,7 @@ type ProjectGalleryProps = {
 
 export function ProjectGallery({ project }: ProjectGalleryProps) {
   return (
-    <div className="fixed inset-0 z-[80] overflow-y-auto bg-[#fbf8f1] text-[#122d48]">
+    <div className="fixed inset-0 z-[80] overflow-y-auto bg-[#fbf8f1] text-[#27384f]">
       <div className="sticky top-0 z-20 border-b border-white/60 bg-[#fbf8f1]/88 backdrop-blur-xl">
         <div className="container-page flex min-h-20 items-center justify-between gap-4 py-3">
           <a
@@ -28,14 +28,14 @@ export function ProjectGallery({ project }: ProjectGalleryProps) {
           <div className="grid gap-8 lg:grid-cols-[1fr_0.75fr] lg:items-end">
             <div>
               <p className="section-kicker">{project.category}</p>
-              <h1 className="mt-3 max-w-3xl text-5xl font-black tracking-tight text-[#122d48] sm:text-6xl">
+              <h1 className="mt-3 max-w-3xl text-5xl font-black tracking-tight text-[#27384f] sm:text-6xl">
                 {project.title}
               </h1>
             </div>
 
             <div className="lg:pb-2">
-              <p className="text-base leading-7 text-[#122d48]/68">{project.description}</p>
-              <p className="mt-4 text-sm font-black text-[#122d48]">{project.highlight}</p>
+              <p className="text-base leading-7 text-[#27384f]/68">{project.description}</p>
+              <p className="mt-4 text-sm font-black text-[#27384f]">{project.highlight}</p>
             </div>
           </div>
 
@@ -64,7 +64,7 @@ export function ProjectGallery({ project }: ProjectGalleryProps) {
           <div className="mt-12 flex justify-center">
             <a
               href="./#projetos"
-              className="magnetic-btn focus-ring rounded-full bg-[#122d48] px-7 py-4 text-center font-black text-white soft-shadow transition hover:-translate-y-1"
+              className="magnetic-btn focus-ring rounded-full bg-[#27384f] px-7 py-4 text-center font-black text-white soft-shadow transition hover:-translate-y-1"
             >
               Voltar ao portfólio
             </a>

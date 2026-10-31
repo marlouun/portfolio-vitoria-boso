@@ -6,6 +6,7 @@ import { Gallery } from './components/Gallery';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { Marquee } from './components/Marquee';
+import { Natal } from './components/Natal';
 import { ProjectGallery } from './components/ProjectGallery';
 import { Projects } from './components/Projects';
 import { projects } from './data/projects';
@@ -20,6 +21,7 @@ function App() {
       <Header />
       <Hero />
       <Marquee />
+      <Natal />
       <About />
       <Projects />
       <Gallery />

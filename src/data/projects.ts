@@ -69,4 +69,15 @@ export const projects: Project[] = [
       `${imageBase}images/vitoria/batizado/IMG_0553.JPEG`,
     ],
   },
+  {
+    id: 4,
+    slug: 'natal-de-outrora',
+    title: 'Natal de Outrora',
+    category: 'Ensaio de Natal',
+    description:
+      'Um cenário natalino preparado com carinho para registrar famílias, casais e pequenos em meio a luzes, laços e memórias de fim de ano.',
+    image: `${imageBase}images/natal/natal-2.jpg`,
+    highlight: 'Luz • afeto • tradição',
+    gallery: [1, 2, 3, 4, 5, 6].map((n) => `${imageBase}images/natal/natal-${n}.jpg`),
+  },
 ];

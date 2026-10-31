@@ -3,26 +3,26 @@ import { Reveal } from './Reveal';
 
 export function Gallery() {
   return (
-    <section id="galeria" className="py-16 sm:py-20">
+    <section id="galeria" className="py-16 sm:py-24">
       <div className="container-page">
-        <div className="relative overflow-hidden rounded-[2.5rem] bg-[#122d48] p-6 text-white soft-shadow sm:p-10">
-          <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#f0cf66]/22 blur-3xl" aria-hidden="true" />
+        <div className="relative overflow-hidden rounded-[2.25rem] bg-[#27384f] px-5 py-12 text-[#fbf8f1] shadow-[0_30px_80px_rgba(39,56,79,0.3)] sm:p-12">
+          <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#dcbe7e]/20 blur-3xl" aria-hidden="true" />
           <Reveal>
-            <p className="section-kicker text-[#eddbb7]">Galeria</p>
-            <div className="mt-3 grid gap-5 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
-              <h2 className="text-4xl font-black tracking-tight sm:text-5xl">Recortes de histórias, luz e presença.</h2>
-              <p className="text-base leading-7 text-[#c8d4e0]">Uma seleção de imagens que atravessa movimento, fé e afeto — diferentes cenas conectadas pelo olhar da Vitória.</p>
+            <div className="text-center">
+              <p className="section-kicker !text-[#dcbe7e]">Galeria</p>
+              <h2 className="mx-auto mt-4 max-w-xl text-4xl leading-[1.05] sm:text-6xl">Recortes de histórias, luz e presença.</h2>
+              <p className="font-script mt-3 text-4xl text-[#dcbe7e]">fé, afeto e movimento</p>
             </div>
           </Reveal>
 
-          <div className="relative mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="relative mt-10 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
             {gallery.map((item, index) => (
               <Reveal key={item.id} delay={index * 0.06}>
-                <figure className={`group overflow-hidden rounded-[2rem] bg-white/10 transition duration-300 hover:-translate-y-3 ${index === 0 || index === 3 ? 'lg:translate-y-8' : ''}`}>
+                <figure className={`group overflow-hidden rounded-[1.5rem] bg-white/10 ${index % 2 ? 'lg:translate-y-8' : ''}`}>
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="h-80 w-full select-none object-cover opacity-90 transition duration-700 group-hover:scale-105 group-hover:opacity-100"
+                    className="aspect-[3/4] w-full select-none object-cover transition duration-700 group-hover:scale-105"
                     loading="lazy"
                     decoding="async"
                     width="700"
@@ -30,11 +30,10 @@ export function Gallery() {
                     draggable={false}
                     onContextMenu={(event) => event.preventDefault()}
                     onDragStart={(event) => event.preventDefault()}
-                    onCopy={(event) => event.preventDefault()}
                   />
-                  <figcaption className="flex items-center justify-between p-4 text-sm font-black text-white">
+                  <figcaption className="font-display flex items-center justify-between p-3 text-xl sm:p-4">
                     {item.title}
-                    <span className="text-[#dcbe7e] transition group-hover:rotate-45">✦</span>
+                    <span className="text-sm text-[#dcbe7e] transition group-hover:rotate-45">✦</span>
                   </figcaption>
                 </figure>
               </Reveal>

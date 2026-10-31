@@ -1,59 +1,74 @@
 import { profile } from '../data/profile';
 
+const base = import.meta.env.BASE_URL;
+
+const noCopy = {
+  draggable: false,
+  onContextMenu: (event: React.SyntheticEvent) => event.preventDefault(),
+  onDragStart: (event: React.SyntheticEvent) => event.preventDefault(),
+  onCopy: (event: React.SyntheticEvent) => event.preventDefault(),
+};
+
 export function Hero() {
   return (
-    <section id="inicio" className="relative overflow-hidden pb-16 pt-32 sm:pt-36 lg:min-h-screen lg:pb-24">
-      <div className="container-page grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-        <div className="hero-copy">
-          <p className="section-kicker">Fotografia autoral</p>
-          <h1 className="mt-4 max-w-4xl text-5xl font-black leading-[0.94] tracking-tight text-[#122d48] sm:text-6xl lg:text-7xl">
-            {profile.name}
-            <span className="block text-[#55779c]">com olhar sensível.</span>
+    <section id="inicio" className="relative isolate overflow-hidden bg-[#27384f] pb-24 pt-32 text-[#fbf8f1] sm:pt-36 lg:pb-28">
+      <img
+        src={`${base}brand/monogram-cream.png`}
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-16 top-24 -z-10 w-[26rem] max-w-none opacity-[0.05] sm:w-[40rem]"
+      />
+      <div className="pointer-events-none absolute -right-24 top-10 -z-10 h-80 w-80 rounded-full bg-[#dcbe7e]/15 blur-3xl" aria-hidden="true" />
+
+      <div className="container-page grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+        <div className="hero-copy text-center lg:text-left">
+          <p className="flex items-center justify-center gap-3 text-[0.72rem] font-medium uppercase tracking-[0.34em] text-[#dcbe7e] lg:justify-start">
+            <span className="gold-rule" /> Fotografia
+          </p>
+          <h1 className="mt-5 text-[3.4rem] leading-[0.95] text-[#fbf8f1] sm:text-7xl lg:text-8xl">
+            Vitória
+            <span className="block">Boso</span>
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-[#122d48]/75 sm:text-xl">{profile.headline}</p>
+          <p className="font-script mt-4 text-4xl text-[#dcbe7e] sm:text-5xl">Registrar aquilo que merece permanecer</p>
+          <p className="mx-auto mt-6 max-w-md text-base leading-7 text-[#fbf8f1]/75 lg:mx-0">{profile.headline}</p>
 
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <a href="#projetos" className="magnetic-btn focus-ring rounded-full bg-[#122d48] px-7 py-4 text-center font-black text-white soft-shadow transition hover:-translate-y-1">
-              Ver projetos
+          <div className="mt-9 flex flex-col items-stretch gap-3 sm:flex-row sm:justify-center lg:justify-start">
+            <a href="#natal" className="btn btn-gold focus-ring">
+              <span aria-hidden="true">✦</span> Reservar Natal de Outrora
             </a>
-            <a href="#galeria" className="focus-ring rounded-full border border-[#c8d4e0] bg-white/75 px-7 py-4 text-center font-black text-[#122d48] backdrop-blur transition hover:-translate-y-1 hover:border-[#dcbe7e]">
-              Ver galeria
+            <a href="#projetos" className="btn btn-ghost-light focus-ring">
+              Ver trabalhos
             </a>
-          </div>
-
-          <div className="mt-10 grid grid-cols-3 gap-3 sm:max-w-xl">
-            {profile.stats.map((stat, index) => (
-              <div key={stat.label} className="card-glass floating-card rounded-3xl p-4 text-center soft-shadow" style={{ animationDelay: `${index * 0.12}s` }}>
-                <strong className="block text-2xl font-black text-[#122d48]">{stat.value}</strong>
-                <span className="mt-1 block text-xs font-bold leading-4 text-[#122d48]/65">{stat.label}</span>
-              </div>
-            ))}
           </div>
         </div>
 
-        <div className="hero-visual relative">
-          <div className="hero-glow absolute -inset-4 rounded-[3rem] bg-[#dcbe7e]/28 blur-2xl" />
-          <div className="soft-shadow relative overflow-hidden rounded-[2.5rem] border-8 border-white bg-white transition duration-500 hover:-rotate-1 hover:scale-[1.01]">
+        <div className="hero-visual relative mx-auto w-full max-w-sm lg:max-w-md">
+          <div className="arch absolute -inset-3 border border-[#dcbe7e]/60" aria-hidden="true" />
+          <div className="arch relative overflow-hidden bg-[#1c2a3d] shadow-[0_30px_80px_rgba(0,0,0,0.45)]">
             <img
               src={profile.heroImage}
               alt="Fotografia autoral de Vitória Boso"
-              className="h-[460px] w-full select-none object-cover sm:h-[540px]"
+              className="aspect-[3/4] w-full select-none object-cover"
               width="900"
-              height="1100"
+              height="1200"
               fetchPriority="high"
-              draggable={false}
-              onContextMenu={(event) => event.preventDefault()}
-              onDragStart={(event) => event.preventDefault()}
-              onCopy={(event) => event.preventDefault()}
+              {...noCopy}
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#27384f]/55 via-transparent to-transparent" />
           </div>
-          <div className="card-glass absolute -bottom-7 left-4 right-4 rounded-3xl p-5 soft-shadow sm:left-auto sm:right-8 sm:w-72">
-            <p className="text-sm font-bold text-[#55779c]">Linguagem</p>
-            <p className="mt-1 text-xl font-black text-[#122d48]">Fotografia artística, sensível e documental.</p>
-          </div>
-          <div className="float-badge absolute -left-3 top-12 rounded-3xl bg-[#122d48] px-4 py-3 text-sm font-black text-white soft-shadow">
-            ✦ Autoral
-          </div>
+
+          <a
+            href="#natal"
+            className="focus-ring float-badge absolute -bottom-9 -right-1 flex w-[15.5rem] items-center gap-3 rounded-2xl bg-[#fdfaf2] p-2.5 pr-4 text-[#3a2418] shadow-[0_20px_50px_rgba(0,0,0,0.4)] sm:-right-8"
+            aria-label="Conhecer o ensaio Natal de Outrora"
+          >
+            <img src={`${base}images/natal/natal-2-sm.jpg`} alt="" className="h-16 w-14 shrink-0 rounded-xl object-cover" width="56" height="64" />
+            <span className="leading-tight">
+              <span className="block text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-[#8a2c3a]">Ensaio de Natal</span>
+              <span className="font-display block text-xl">Natal de Outrora</span>
+              <span className="text-xs text-[#3a2418]/65">Reservas abertas →</span>
+            </span>
+          </a>
         </div>
       </div>
     </section>
