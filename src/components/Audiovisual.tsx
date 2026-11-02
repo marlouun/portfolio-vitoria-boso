@@ -15,7 +15,7 @@ export function Audiovisual() {
           </div>
         </Reveal>
 
-        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
           {videos.map((video, index) => (
             <Reveal key={video.slug} delay={index * 0.06} className="h-full">
               <a href={`?video=${video.slug}`} className="focus-ring group flex h-full flex-col" aria-label={`Assistir ${video.title}`}>
