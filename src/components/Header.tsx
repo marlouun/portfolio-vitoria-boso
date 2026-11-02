@@ -7,6 +7,7 @@ const links = [
   { href: '#natal', label: 'Natal de Outrora', highlight: true },
   { href: '#sobre', label: 'Sobre' },
   { href: '#projetos', label: 'Trabalhos' },
+  { href: '#audiovisual', label: 'Audiovisual' },
   { href: '#galeria', label: 'Galeria' },
   { href: '#contato', label: 'Contato' },
 ];
