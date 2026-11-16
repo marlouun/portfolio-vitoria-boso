@@ -62,6 +62,9 @@ export function Header() {
                 {link.label}
               </a>
             ))}
+            <a href="?area=cliente" className="focus-ring ml-2 rounded-full border border-[#27384f]/25 px-4 py-2 text-sm font-medium tracking-wide text-[#27384f] transition hover:bg-[#27384f] hover:text-white">
+              Área do cliente
+            </a>
           </div>
 
           <button
@@ -94,6 +97,11 @@ export function Header() {
                 </a>
               </li>
             ))}
+            <li>
+              <a href="?area=cliente" className="font-display block border-b border-white/10 py-4 text-3xl text-[#dcbe7e]">
+                Área do cliente
+              </a>
+            </li>
           </ul>
           <p className="font-script relative mt-auto text-3xl text-[#dcbe7e]">Registrar aquilo que merece permanecer</p>
         </div>
