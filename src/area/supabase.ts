@@ -6,7 +6,7 @@ const SUPABASE_KEY = 'sb_publishable_AJpc5jBjgzdcCrZ0A_ONMA_791ZtpVx';
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-export const SITE_URL = 'https://marlouun.github.io/portfolio-vitoria-boso/';
+export const SITE_URL = 'https://vitoriaboso.com.br/';
 export const AREA_URL = `${SITE_URL}?area=cliente`;
 export const WHATSAPP_VITORIA = '5548991842048';
 
