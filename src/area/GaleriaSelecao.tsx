@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { WHATSAPP_VITORIA, buscarFotos, dataBR, miniatura, reais, resumoSelecao, supabase, whatsapp } from './supabase';
 import type { Foto, Galeria, Perfil } from './supabase';
-import { Aviso, Botao, Carregando, SeloStatus, Shell } from './ui';
+import { Aviso, Botao, Carregando, FotoProtegida, SeloStatus, Shell } from './ui';
 
 type Props = {
   galeria: Galeria;
@@ -81,10 +81,49 @@ export function GaleriaSelecao({ galeria, perfil, onSair, onVoltar, onFinalizada
     };
   }, [aberta, visiveis.length]);
 
+  // Proteção das prévias: borra as fotos quando a janela perde o foco (ferramentas de recorte,
+  // troca de aplicativo) e bloqueia os atalhos de salvar, imprimir e print.
+  const [oculta, setOculta] = useState(false);
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const esconder = () => setOculta(true);
+    const mostrar = () => {
+      if (!document.hidden) setOculta(false);
+    };
+    const visibilidade = () => {
+      if (document.hidden) setOculta(true);
+    };
+    const tecla = (e: KeyboardEvent) => {
+      const k = e.key.toLowerCase();
+      const atalho = (e.ctrlKey || e.metaKey) && (k === 's' || k === 'p' || (e.shiftKey && (k === 's' || k === '3' || k === '4' || k === '5')));
+      if (k === 'printscreen' || atalho) {
+        e.preventDefault();
+        setOculta(true);
+        navigator.clipboard?.writeText('').catch(() => undefined);
+        clearTimeout(timer);
+        timer = setTimeout(() => setOculta(false), 1500);
+      }
+    };
+    window.addEventListener('blur', esconder);
+    window.addEventListener('focus', mostrar);
+    document.addEventListener('visibilitychange', visibilidade);
+    window.addEventListener('keydown', tecla);
+    window.addEventListener('keyup', tecla);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('blur', esconder);
+      window.removeEventListener('focus', mostrar);
+      document.removeEventListener('visibilitychange', visibilidade);
+      window.removeEventListener('keydown', tecla);
+      window.removeEventListener('keyup', tecla);
+    };
+  }, []);
+
   const fotoAberta = aberta !== null ? visiveis[aberta] : undefined;
 
   return (
     <Shell nome={perfil.nome} onSair={onSair} largo>
+      <div className={`area-protegida ${oculta ? 'fotos-ocultas' : ''}`} onContextMenu={(e) => e.preventDefault()}>
       {onVoltar && (
         <button type="button" onClick={onVoltar} className="focus-ring mb-6 rounded-full text-sm font-medium text-[#27384f]/70 hover:text-[#27384f]">
           ← Todas as galerias
@@ -135,7 +174,7 @@ export function GaleriaSelecao({ galeria, perfil, onSair, onVoltar, onFinalizada
         {visiveis.map((foto, i) => (
           <figure key={foto.id} className={`group relative overflow-hidden rounded-xl bg-[#27384f]/10 ${foto.selecionada ? 'ring-4 ring-[#dcbe7e]' : ''}`}>
             <button type="button" onClick={() => setAberta(i)} className="focus-ring block w-full" aria-label={`Ver ${foto.nome} maior`}>
-              <img src={miniatura(foto.drive_id, 600)} referrerPolicy="no-referrer" alt={foto.nome} loading="lazy" decoding="async" className="aspect-square w-full select-none object-cover" draggable={false} />
+              <FotoProtegida src={miniatura(foto.drive_id, 600)} alt={foto.nome} lazy imgClassName="aspect-square w-full object-cover" />
             </button>
             {(podeEditar || foto.selecionada) && (
               <button
@@ -213,7 +252,13 @@ export function GaleriaSelecao({ galeria, perfil, onSair, onVoltar, onFinalizada
             <button type="button" onClick={() => setAberta(null)} className="focus-ring rounded-full border border-white/30 px-4 py-1.5">Fechar</button>
           </div>
           <div className="relative flex min-h-0 flex-1 items-center justify-center px-2">
-            <img key={fotoAberta.id} src={miniatura(fotoAberta.drive_id, 1600)} referrerPolicy="no-referrer" alt={fotoAberta.nome} className="max-h-full max-w-full select-none object-contain" draggable={false} />
+            <FotoProtegida
+              key={fotoAberta.id}
+              src={miniatura(fotoAberta.drive_id, 1200)}
+              alt={fotoAberta.nome}
+              className="inline-block"
+              imgClassName="max-h-[calc(100dvh-9.5rem)] max-w-[calc(100vw-1rem)] object-contain"
+            />
             <button type="button" onClick={() => setAberta(Math.max(0, aberta - 1))} disabled={aberta === 0} aria-label="Foto anterior" className="focus-ring absolute left-2 top-1/2 h-12 w-12 -translate-y-1/2 rounded-full bg-white/15 text-2xl disabled:opacity-30">‹</button>
             <button type="button" onClick={() => setAberta(Math.min(visiveis.length - 1, aberta + 1))} disabled={aberta === visiveis.length - 1} aria-label="Próxima foto" className="focus-ring absolute right-2 top-1/2 h-12 w-12 -translate-y-1/2 rounded-full bg-white/15 text-2xl disabled:opacity-30">›</button>
           </div>
@@ -228,6 +273,12 @@ export function GaleriaSelecao({ galeria, perfil, onSair, onVoltar, onFinalizada
           </div>
         </div>
       )}
+      {oculta && (
+        <div className="pointer-events-none fixed inset-x-0 top-20 z-[60] flex justify-center px-4">
+          <span className="rounded-full bg-[#27384f] px-5 py-2 text-sm text-white shadow-lg">As prévias ficam ocultas fora da tela. Clique na página para voltar.</span>
+        </div>
+      )}
+      </div>
     </Shell>
   );
 }

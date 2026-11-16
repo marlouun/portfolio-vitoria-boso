@@ -3,6 +3,34 @@ import { useState } from 'react';
 
 const base = import.meta.env.BASE_URL;
 
+// Marca d'água repetida por cima das prévias: aparece em qualquer print.
+const MARCA_DAGUA = `url("data:image/svg+xml,${encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" width="230" height="150"><g transform="rotate(-24 115 75)">' +
+    '<text x="115" y="72" text-anchor="middle" font-family="Georgia, serif" font-size="21" letter-spacing="3" fill="#ffffff" fill-opacity="0.6" stroke="#000000" stroke-opacity="0.35" stroke-width="0.7">VITÓRIA BOSO</text>' +
+    '<text x="115" y="94" text-anchor="middle" font-family="Georgia, serif" font-size="11" letter-spacing="4" fill="#ffffff" fill-opacity="0.55" stroke="#000000" stroke-opacity="0.25" stroke-width="0.4">PRÉVIA</text>' +
+    '</g></svg>',
+)}")`;
+
+type FotoProtegidaProps = { src: string; alt: string; className?: string; imgClassName?: string; lazy?: boolean };
+
+// Prévia para o cliente: sem arrastar, sem "salvar imagem" no toque longo e com marca d'água.
+export function FotoProtegida({ src, alt, className = '', imgClassName = '', lazy }: FotoProtegidaProps) {
+  return (
+    <div className={`foto-protegida relative ${className}`} onContextMenu={(e) => e.preventDefault()}>
+      <img
+        src={src}
+        alt={alt}
+        referrerPolicy="no-referrer"
+        loading={lazy ? 'lazy' : undefined}
+        decoding="async"
+        draggable={false}
+        className={`pointer-events-none select-none ${imgClassName}`}
+      />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ backgroundImage: MARCA_DAGUA, backgroundSize: '230px 150px' }} />
+    </div>
+  );
+}
+
 // Compara sem diferenciar maiúsculas nem acentos ("vitoria" acha "Vitória").
 export function contem(textos: (string | null | undefined)[], termo: string) {
   const limpar = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
