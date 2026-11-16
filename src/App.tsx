@@ -1,3 +1,4 @@
+import { Suspense, lazy } from 'react';
 import { About } from './components/About';
 import { Audiovisual } from './components/Audiovisual';
 import { Contact } from './components/Contact';
@@ -14,7 +15,18 @@ import { VideoPage } from './components/VideoPage';
 import { projects } from './data/projects';
 import { videos } from './data/videos';
 
+// A área do cliente só é baixada por quem abre ?area=cliente, para não pesar o portfólio.
+const AreaCliente = lazy(() => import('./area/AreaCliente').then((m) => ({ default: m.AreaCliente })));
+
 function App() {
+  if (new URLSearchParams(window.location.search).get('area') === 'cliente') {
+    return (
+      <Suspense fallback={null}>
+        <AreaCliente />
+      </Suspense>
+    );
+  }
+
   const projectSlug = new URLSearchParams(window.location.search).get('projeto');
   const selectedProject = projects.find((project) => project.slug === projectSlug);
   const videoSlug = new URLSearchParams(window.location.search).get('video');

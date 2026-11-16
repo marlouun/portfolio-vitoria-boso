@@ -449,3 +449,11 @@ img {
 @media (prefers-reduced-motion: reduce) {
   .snowflake { display: none; }
 }
+
+/* Área do cliente: proteção das prévias */
+.foto-protegida { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+.foto-protegida img { transition: filter 0.2s ease; }
+.fotos-ocultas .foto-protegida img { filter: blur(28px) brightness(0.85); }
+@media print {
+  .area-protegida { display: none !important; }
+}

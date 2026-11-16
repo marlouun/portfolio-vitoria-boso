@@ -46,7 +46,7 @@ export function Header() {
       <div className={`border-b transition duration-300 ${scrolled ? 'border-[#27384f]/10 bg-[#fbf8f1]/97 backdrop-blur-xl' : 'border-transparent bg-[#fbf8f1]/97'}`}>
         <nav className="container-page flex h-[4.25rem] items-center justify-between">
           <a href="#inicio" className="focus-ring rounded-md" aria-label="Vitória Boso Fotografia — início">
-            <img src={`${base}brand/logo-navy.png`} alt="Vitória Boso Fotografia" className="h-11 w-auto sm:h-12" width="569" height="288" />
+            <img src={`${base}brand/monogram-navy.png`} alt="Vitória Boso Fotografia" className="h-10 w-auto sm:h-11" width="728" height="507" />
           </a>
 
           <div className="hidden items-center gap-1 lg:flex">
@@ -62,6 +62,9 @@ export function Header() {
                 {link.label}
               </a>
             ))}
+            <a href="?area=cliente" className="focus-ring ml-2 rounded-full border border-[#27384f]/25 px-4 py-2 text-sm font-medium tracking-wide text-[#27384f] transition hover:bg-[#27384f] hover:text-white">
+              Área do cliente
+            </a>
           </div>
 
           <button
@@ -94,6 +97,11 @@ export function Header() {
                 </a>
               </li>
             ))}
+            <li>
+              <a href="?area=cliente" className="font-display block border-b border-white/10 py-4 text-3xl text-[#dcbe7e]">
+                Área do cliente
+              </a>
+            </li>
           </ul>
           <p className="font-script relative mt-auto text-3xl text-[#dcbe7e]">Registrar aquilo que merece permanecer</p>
         </div>
