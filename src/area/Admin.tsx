@@ -557,6 +557,13 @@ function DetalheGaleria({ galeria, cliente, fotos, onVoltar, onMudou }: DetalheP
       {erro && <div className="mt-4"><Aviso>{erro}</Aviso></div>}
       {aviso && <div className="mt-4"><Aviso tipo="ok">{aviso}</Aviso></div>}
       {galeria.status === 'arquivada' && <div className="mt-4"><Aviso tipo="info">Galeria arquivada: o cliente não vê mais estas fotos.</Aviso></div>}
+      {galeria.recado && (
+        <Cartao className="mt-6 border-[#dcbe7e] bg-[#fffaf0]">
+          <p className="section-kicker">Recado do cliente</p>
+          <p className="mt-2 whitespace-pre-wrap italic text-[#27384f]/85">“{galeria.recado}”</p>
+          {galeria.finalizada_em && <p className="mt-2 text-xs text-[#27384f]/55">Enviado ao finalizar, em {dataBR(galeria.finalizada_em)}.</p>}
+        </Cartao>
+      )}
 
       <div className="mt-10 flex items-center justify-between gap-3">
         <h2 className="text-3xl">{verTodas ? 'Todas as fotos' : 'Fotos escolhidas'}</h2>

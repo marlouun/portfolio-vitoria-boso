@@ -19,6 +19,9 @@ export function GaleriaSelecao({ galeria, perfil, onSair, onVoltar, onFinalizada
   const [confirmando, setConfirmando] = useState(false);
   const [finalizando, setFinalizando] = useState(false);
   const [status, setStatus] = useState(galeria.status);
+  const [recado, setRecado] = useState('');
+  const [avisar, setAvisar] = useState(true);
+  const [recadoEnviado, setRecadoEnviado] = useState(galeria.recado ?? '');
 
   const podeEditar = status === 'aberta';
 
@@ -47,23 +50,32 @@ export function GaleriaSelecao({ galeria, perfil, onSair, onVoltar, onFinalizada
     [podeEditar],
   );
 
+  const mensagemVitoria = (texto: string) =>
+    [
+      `Oi, Vitória! Finalizei a seleção da galeria "${galeria.titulo}".`,
+      `${resumo.selecionadas} fotos escolhidas (${resumo.incluidas} do pacote${resumo.extras ? ` + ${resumo.extras} extras = ${reais(resumo.total)}` : ''}).`,
+      ...(texto.trim() ? ['', `Recado: ${texto.trim()}`] : []),
+      '',
+      ...marcadas.map((f) => f.nome),
+    ].join('\n');
+
   async function finalizar() {
+    // A janela do WhatsApp precisa abrir no mesmo clique; senão o navegador bloqueia.
+    const janela = avisar ? window.open('', '_blank') : null;
     setFinalizando(true);
-    const { error } = await supabase.rpc('finalizar_galeria', { p_galeria: galeria.id });
+    const { error } = await supabase.rpc('finalizar_galeria', { p_galeria: galeria.id, p_recado: recado.trim() || null });
     setFinalizando(false);
     setConfirmando(false);
-    if (error) return setErro('Não foi possível finalizar. Tente de novo.');
+    if (error) {
+      janela?.close();
+      return setErro('Não foi possível finalizar. Tente de novo.');
+    }
+    if (janela) janela.location.href = whatsapp(WHATSAPP_VITORIA, mensagemVitoria(recado));
+    setRecadoEnviado(recado.trim());
     setStatus('finalizada');
     setFiltro('selecionadas');
     onFinalizada();
   }
-
-  const mensagemVitoria = [
-    `Oi, Vitória! Finalizei a seleção da galeria "${galeria.titulo}".`,
-    `${resumo.selecionadas} fotos escolhidas (${resumo.incluidas} do pacote${resumo.extras ? ` + ${resumo.extras} extras = ${reais(resumo.total)}` : ''}).`,
-    '',
-    ...marcadas.map((f) => f.nome),
-  ].join('\n');
 
   // Navegação da foto ampliada pelas setas do teclado.
   useEffect(() => {
@@ -157,13 +169,22 @@ export function GaleriaSelecao({ galeria, perfil, onSair, onVoltar, onFinalizada
       </div>
 
       {status === 'finalizada' && (
-        <div className="mb-6">
-          <Aviso tipo="ok">
-            Seleção concluída! A Vitória já pode ver as suas escolhas.{' '}
-            <a className="font-semibold underline underline-offset-4" href={whatsapp(WHATSAPP_VITORIA, mensagemVitoria)} target="_blank" rel="noreferrer">
-              Avisar a Vitória pelo WhatsApp
-            </a>
-          </Aviso>
+        <div className="mb-8 rounded-2xl border border-[#1f3d2e]/20 bg-white p-5 sm:p-6">
+          <p className="section-kicker !text-[#1f3d2e]">Seleção concluída</p>
+          <p className="font-display mt-2 text-3xl">Obrigada pelas suas escolhas!</p>
+          <p className="mt-2 text-[#27384f]/70">
+            A Vitória já consegue ver as {resumo.selecionadas} fotos escolhidas
+            {resumo.extras > 0 ? `, com ${resumo.extras} extra${resumo.extras === 1 ? '' : 's'} (${reais(resumo.total)})` : ''}.
+          </p>
+          {recadoEnviado && <p className="mt-3 rounded-xl bg-[#fbf8f1] px-4 py-3 text-sm italic text-[#27384f]/80">“{recadoEnviado}”</p>}
+          <a
+            className="btn btn-navy mt-5 !px-5 !py-2.5 !text-sm"
+            href={whatsapp(WHATSAPP_VITORIA, mensagemVitoria(recadoEnviado))}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Avisar a Vitória pelo WhatsApp
+          </a>
         </div>
       )}
       {erro && <div className="mb-6"><Aviso>{erro}</Aviso></div>}
@@ -235,9 +256,29 @@ export function GaleriaSelecao({ galeria, perfil, onSair, onVoltar, onFinalizada
             </p>
             {resumo.faltam > 0 && <p className="mt-2 text-sm text-[#8a2a2a]">Ainda dá para escolher mais {resumo.faltam} sem custo.</p>}
             <p className="mt-2 text-sm text-[#27384f]/60">Depois de finalizar não é possível alterar. Se precisar, fale com a Vitória.</p>
+
+            <label className="mt-5 block">
+              <span className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-[#27384f]/70">Recado para a Vitória (opcional)</span>
+              <textarea
+                value={recado}
+                onChange={(e) => setRecado(e.target.value)}
+                maxLength={1000}
+                rows={3}
+                placeholder="Ex.: Amei as fotos! Gostaria da IMG_7116 também em preto e branco."
+                className="mt-1.5 w-full resize-none rounded-xl border border-[#27384f]/20 bg-white px-4 py-3 text-base outline-none focus:border-[#27384f] focus:ring-2 focus:ring-[#dcbe7e]/60"
+              />
+            </label>
+            <label className="mt-3 flex cursor-pointer items-start gap-3 text-sm">
+              <input type="checkbox" checked={avisar} onChange={(e) => setAvisar(e.target.checked)} className="mt-0.5 h-5 w-5 accent-[#27384f]" />
+              <span>
+                <strong>Avisar a Vitória pelo WhatsApp</strong>
+                <span className="block text-[#27384f]/60">Abre o WhatsApp com a mensagem pronta e a lista das fotos.</span>
+              </span>
+            </label>
+
             <div className="mt-6 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
               <Botao variante="ghost" onClick={() => setConfirmando(false)}>Voltar</Botao>
-              <Botao variante="navy" onClick={finalizar} carregando={finalizando}>Confirmar</Botao>
+              <Botao variante="gold" onClick={finalizar} carregando={finalizando}>Finalizar seleção</Botao>
             </div>
           </div>
         </div>

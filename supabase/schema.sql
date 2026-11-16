@@ -23,8 +23,12 @@ create table if not exists public.galerias (
   status text not null default 'aberta' check (status in ('aberta', 'finalizada', 'arquivada')),
   prazo date,
   created_at timestamptz not null default now(),
-  finalizada_em timestamptz
+  finalizada_em timestamptz,
+  recado text
 );
+
+-- Recado opcional que o cliente deixa ao finalizar (bancos criados antes desta coluna).
+alter table public.galerias add column if not exists recado text;
 
 create table if not exists public.fotos (
   id uuid primary key default gen_random_uuid(),
@@ -55,8 +59,9 @@ as $$
   select coalesce((select p.is_admin from public.profiles p where p.id = auth.uid()), false);
 $$;
 
--- O cliente fecha a própria seleção; depois disso não consegue mais mudar.
-create or replace function public.finalizar_galeria(p_galeria uuid)
+-- O cliente fecha a própria seleção (com um recado opcional); depois disso não consegue mais mudar.
+drop function if exists public.finalizar_galeria(uuid);
+create or replace function public.finalizar_galeria(p_galeria uuid, p_recado text default null)
 returns void
 language plpgsql
 security definer
@@ -64,7 +69,7 @@ set search_path = ''
 as $$
 begin
   update public.galerias
-     set status = 'finalizada', finalizada_em = now()
+     set status = 'finalizada', finalizada_em = now(), recado = nullif(left(trim(p_recado), 1000), '')
    where id = p_galeria
      and cliente_id = auth.uid()
      and status = 'aberta';
@@ -85,10 +90,10 @@ as $$
 $$;
 
 revoke execute on function public.is_admin() from public, anon;
-revoke execute on function public.finalizar_galeria(uuid) from public, anon;
+revoke execute on function public.finalizar_galeria(uuid, text) from public, anon;
 revoke execute on function public.senha_alterada() from public, anon;
 grant execute on function public.is_admin() to authenticated;
-grant execute on function public.finalizar_galeria(uuid) to authenticated;
+grant execute on function public.finalizar_galeria(uuid, text) to authenticated;
 grant execute on function public.senha_alterada() to authenticated;
 
 -- Permissões ------------------------------------------------------------------

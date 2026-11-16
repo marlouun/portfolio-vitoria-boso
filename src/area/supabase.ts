@@ -33,6 +33,7 @@ export type Galeria = {
   prazo: string | null;
   created_at: string;
   finalizada_em: string | null;
+  recado: string | null;
 };
 
 export type Foto = {
