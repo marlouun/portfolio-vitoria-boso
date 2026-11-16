@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { daysUntilChristmas } from '../data/natal';
 
 const base = import.meta.env.BASE_URL;
@@ -81,8 +82,10 @@ export function Header() {
         </nav>
       </div>
 
-      {open && (
-        <div id="mobile-menu" className="fixed inset-0 top-0 z-[-1] flex flex-col bg-[#27384f] px-8 pb-10 pt-32 text-[#fbf8f1] lg:hidden">
+      {/* Fora do <header>: a animação de entrada dele prenderia o menu à altura do cabeçalho. */}
+      {open &&
+        createPortal(
+        <div id="mobile-menu" className="fixed inset-0 z-[45] flex flex-col overflow-y-auto bg-[#27384f]/70 px-8 pb-10 pt-32 text-[#fbf8f1] backdrop-blur-md lg:hidden">
           <img src={`${base}brand/monogram-cream.png`} alt="" aria-hidden="true" className="pointer-events-none absolute -right-10 bottom-6 w-72 opacity-[0.07]" />
           <ul className="relative space-y-1">
             {links.map((link) => (
@@ -98,14 +101,15 @@ export function Header() {
               </li>
             ))}
             <li>
-              <a href="?area=cliente" className="font-display block border-b border-white/10 py-4 text-3xl text-[#dcbe7e]">
+              <a href="?area=cliente" onClick={() => setOpen(false)} className="font-display block border-b border-white/10 py-4 text-3xl text-[#dcbe7e]">
                 Área do cliente
               </a>
             </li>
           </ul>
-          <p className="font-script relative mt-auto text-3xl text-[#dcbe7e]">Registrar aquilo que merece permanecer</p>
-        </div>
-      )}
+          <p className="font-script relative mt-auto pt-8 text-3xl text-[#dcbe7e]">Registrar aquilo que merece permanecer</p>
+        </div>,
+          document.body,
+        )}
     </header>
   );
 }
