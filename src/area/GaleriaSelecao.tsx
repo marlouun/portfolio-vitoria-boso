@@ -135,7 +135,7 @@ export function GaleriaSelecao({ galeria, perfil, onSair, onVoltar, onFinalizada
         {visiveis.map((foto, i) => (
           <figure key={foto.id} className={`group relative overflow-hidden rounded-xl bg-[#27384f]/10 ${foto.selecionada ? 'ring-4 ring-[#dcbe7e]' : ''}`}>
             <button type="button" onClick={() => setAberta(i)} className="focus-ring block w-full" aria-label={`Ver ${foto.nome} maior`}>
-              <img src={miniatura(foto.drive_id, 600)} alt={foto.nome} loading="lazy" decoding="async" className="aspect-square w-full select-none object-cover" draggable={false} />
+              <img src={miniatura(foto.drive_id, 600)} referrerPolicy="no-referrer" alt={foto.nome} loading="lazy" decoding="async" className="aspect-square w-full select-none object-cover" draggable={false} />
             </button>
             {(podeEditar || foto.selecionada) && (
               <button
@@ -213,7 +213,7 @@ export function GaleriaSelecao({ galeria, perfil, onSair, onVoltar, onFinalizada
             <button type="button" onClick={() => setAberta(null)} className="focus-ring rounded-full border border-white/30 px-4 py-1.5">Fechar</button>
           </div>
           <div className="relative flex min-h-0 flex-1 items-center justify-center px-2">
-            <img key={fotoAberta.id} src={miniatura(fotoAberta.drive_id, 1600)} alt={fotoAberta.nome} className="max-h-full max-w-full select-none object-contain" draggable={false} />
+            <img key={fotoAberta.id} src={miniatura(fotoAberta.drive_id, 1600)} referrerPolicy="no-referrer" alt={fotoAberta.nome} className="max-h-full max-w-full select-none object-contain" draggable={false} />
             <button type="button" onClick={() => setAberta(Math.max(0, aberta - 1))} disabled={aberta === 0} aria-label="Foto anterior" className="focus-ring absolute left-2 top-1/2 h-12 w-12 -translate-y-1/2 rounded-full bg-white/15 text-2xl disabled:opacity-30">‹</button>
             <button type="button" onClick={() => setAberta(Math.min(visiveis.length - 1, aberta + 1))} disabled={aberta === visiveis.length - 1} aria-label="Próxima foto" className="focus-ring absolute right-2 top-1/2 h-12 w-12 -translate-y-1/2 rounded-full bg-white/15 text-2xl disabled:opacity-30">›</button>
           </div>

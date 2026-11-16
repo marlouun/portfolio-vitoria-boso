@@ -46,7 +46,7 @@ export function Header() {
       <div className={`border-b transition duration-300 ${scrolled ? 'border-[#27384f]/10 bg-[#fbf8f1]/97 backdrop-blur-xl' : 'border-transparent bg-[#fbf8f1]/97'}`}>
         <nav className="container-page flex h-[4.25rem] items-center justify-between">
           <a href="#inicio" className="focus-ring rounded-md" aria-label="Vitória Boso Fotografia — início">
-            <img src={`${base}brand/logo-navy.png`} alt="Vitória Boso Fotografia" className="h-11 w-auto sm:h-12" width="569" height="288" />
+            <img src={`${base}brand/monogram-navy.png`} alt="Vitória Boso Fotografia" className="h-10 w-auto sm:h-11" width="728" height="507" />
           </a>
 
           <div className="hidden items-center gap-1 lg:flex">

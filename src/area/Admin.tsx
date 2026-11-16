@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { FormEvent } from 'react';
 import { AREA_URL, buscarFotos, chamarAdmin, dataBR, miniatura, reais, resumoSelecao, supabase, whatsapp } from './supabase';
 import type { Foto, FotoDrive, Galeria, Perfil } from './supabase';
-import { Aviso, Botao, BotaoCopiar, Campo, Carregando, Cartao, SeloStatus, Shell, Titulo } from './ui';
+import { Aviso, Botao, BotaoCopiar, Campo, CampoBusca, Carregando, Cartao, SeloStatus, Shell, Titulo, contem } from './ui';
 
 type Dados = { clientes: Perfil[]; galerias: Galeria[]; fotos: Foto[] };
 
@@ -116,15 +116,23 @@ export function Admin({ perfil, onSair }: { perfil: Perfil; onSair: () => void }
 }
 
 function ListaGalerias({ dados, onAbrir, onNova }: { dados: Dados; onAbrir: (id: string) => void; onNova: () => void }) {
+  const [busca, setBusca] = useState('');
+  const clienteDe = (g: Galeria) => dados.clientes.find((c) => c.id === g.cliente_id);
+  const encontradas = dados.galerias.filter((g) => contem([g.titulo, clienteDe(g)?.nome, clienteDe(g)?.email], busca));
+
   return (
     <div>
-      <div className="mb-5 flex justify-end">
+      <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="sm:w-96">
+          <CampoBusca valor={busca} onMudar={setBusca} placeholder="Buscar por galeria ou cliente" />
+        </div>
         <Botao variante="gold" onClick={onNova}>+ Nova galeria</Botao>
       </div>
       {dados.galerias.length === 0 && <Aviso tipo="info">Nenhuma galeria ainda. Cadastre o cliente e depois crie a galeria com o link da pasta do Drive.</Aviso>}
+      {dados.galerias.length > 0 && encontradas.length === 0 && <Aviso tipo="info">Nenhuma galeria encontrada para “{busca}”.</Aviso>}
       <div className="space-y-3">
-        {dados.galerias.map((g) => {
-          const cliente = dados.clientes.find((c) => c.id === g.cliente_id);
+        {encontradas.map((g) => {
+          const cliente = clienteDe(g);
           const fotos = dados.fotos.filter((f) => f.galeria_id === g.id);
           const r = resumoSelecao(g, fotos.filter((f) => f.selecionada).length);
           return (
@@ -135,7 +143,7 @@ function ListaGalerias({ dados, onAbrir, onNova }: { dados: Dados; onAbrir: (id:
               className="focus-ring flex w-full items-center gap-4 rounded-2xl border border-[#27384f]/10 bg-white p-3 text-left transition hover:border-[#27384f]/30"
             >
               <div className="h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-[#27384f]/10">
-                {fotos[0] && <img src={miniatura(fotos[0].drive_id, 200)} alt="" loading="lazy" className="h-full w-full object-cover" />}
+                {fotos[0] && <img src={miniatura(fotos[0].drive_id, 200)} referrerPolicy="no-referrer" alt="" loading="lazy" className="h-full w-full object-cover" />}
               </div>
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-2">
@@ -165,6 +173,8 @@ function Clientes({ clientes, galerias, onMudou }: { clientes: Perfil[]; galeria
   const [acesso, setAcesso] = useState<{ nome: string; email: string; telefone: string | null; senha: string } | null>(null);
   const [excluindo, setExcluindo] = useState<string | null>(null);
   const [ocupado, setOcupado] = useState<string | null>(null);
+  const [busca, setBusca] = useState('');
+  const encontrados = clientes.filter((c) => contem([c.nome, c.email, c.telefone, c.telefone?.replace(/\D/g, '')], busca));
 
   async function criar(e: FormEvent) {
     e.preventDefault();
@@ -243,8 +253,10 @@ function Clientes({ clientes, galerias, onMudou }: { clientes: Perfil[]; galeria
       </div>
 
       <div className="space-y-3">
+        {clientes.length > 0 && <CampoBusca valor={busca} onMudar={setBusca} placeholder="Buscar cliente por nome, email ou WhatsApp" />}
         {clientes.length === 0 && <Aviso tipo="info">Nenhum cliente cadastrado ainda.</Aviso>}
-        {clientes.map((c) => {
+        {clientes.length > 0 && encontrados.length === 0 && <Aviso tipo="info">Nenhum cliente encontrado para “{busca}”.</Aviso>}
+        {encontrados.map((c) => {
           const qtd = galerias.filter((g) => g.cliente_id === c.id).length;
           return (
             <Cartao key={c.id} className="!p-4">
@@ -394,7 +406,7 @@ function NovaGaleria({ clientes, onCancelar, onCriada, onNovoCliente }: NovaGale
                 <Aviso tipo="ok">{fotosDrive.length} fotos encontradas na pasta.</Aviso>
                 <div className="mt-3 grid grid-cols-6 gap-1.5">
                   {fotosDrive.slice(0, 12).map((f) => (
-                    <img key={f.id} src={miniatura(f.id, 200)} alt={f.nome} loading="lazy" className="aspect-square w-full rounded-md object-cover" />
+                    <img key={f.id} src={miniatura(f.id, 200)} referrerPolicy="no-referrer" alt={f.nome} loading="lazy" className="aspect-square w-full rounded-md object-cover" />
                   ))}
                 </div>
               </div>
@@ -554,7 +566,7 @@ function DetalheGaleria({ galeria, cliente, fotos, onVoltar, onMudou }: DetalheP
       <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-4 lg:grid-cols-6">
         {mostradas.map((f) => (
           <figure key={f.id} className={`overflow-hidden rounded-lg bg-[#27384f]/10 ${verTodas && f.selecionada ? 'ring-4 ring-[#dcbe7e]' : ''}`}>
-            <img src={miniatura(f.drive_id, 400)} alt={f.nome} loading="lazy" className="aspect-square w-full object-cover" />
+            <img src={miniatura(f.drive_id, 400)} referrerPolicy="no-referrer" alt={f.nome} loading="lazy" className="aspect-square w-full object-cover" />
             <figcaption className="truncate px-1.5 py-1 text-[0.7rem] text-[#27384f]/75">{f.nome}</figcaption>
           </figure>
         ))}

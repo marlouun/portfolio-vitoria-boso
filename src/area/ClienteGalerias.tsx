@@ -69,7 +69,7 @@ export function ClienteGalerias({ perfil, onSair }: { perfil: Perfil; onSair: ()
             className="focus-ring group overflow-hidden rounded-2xl border border-[#27384f]/10 bg-white text-left shadow-[0_10px_30px_rgba(39,56,79,0.06)] transition hover:-translate-y-1"
           >
             <div className="aspect-[4/3] overflow-hidden bg-[#27384f]/10">
-              {g.capa && <img src={miniatura(g.capa, 600)} alt="" loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />}
+              {g.capa && <img src={miniatura(g.capa, 600)} referrerPolicy="no-referrer" alt="" loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />}
             </div>
             <div className="space-y-2 p-5">
               <SeloStatus status={g.status} />

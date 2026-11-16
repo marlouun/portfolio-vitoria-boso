@@ -3,6 +3,29 @@ import { useState } from 'react';
 
 const base = import.meta.env.BASE_URL;
 
+// Compara sem diferenciar maiúsculas nem acentos ("vitoria" acha "Vitória").
+export function contem(textos: (string | null | undefined)[], termo: string) {
+  const limpar = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  const t = limpar(termo.trim());
+  return !t || textos.some((s) => s && limpar(s).includes(t));
+}
+
+export function CampoBusca({ valor, onMudar, placeholder }: { valor: string; onMudar: (v: string) => void; placeholder: string }) {
+  return (
+    <label className="relative block">
+      <span className="sr-only">{placeholder}</span>
+      <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[#27384f]/45" aria-hidden="true">⌕</span>
+      <input
+        type="search"
+        value={valor}
+        onChange={(e) => onMudar(e.target.value)}
+        placeholder={placeholder}
+        className="w-full rounded-full border border-[#27384f]/20 bg-white py-2.5 pl-10 pr-4 text-base outline-none transition focus:border-[#27384f] focus:ring-2 focus:ring-[#dcbe7e]/60"
+      />
+    </label>
+  );
+}
+
 type ShellProps = {
   children: ReactNode;
   nome?: string;

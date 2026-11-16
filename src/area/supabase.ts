@@ -46,8 +46,10 @@ export type Foto = {
 
 export type FotoDrive = { id: string; nome: string };
 
+// Endereço direto da imagem no Google. A tag <img> precisa de referrerPolicy="no-referrer":
+// com o endereço do site como origem, o Google recusa a imagem.
 export function miniatura(driveId: string, largura = 800) {
-  return `https://drive.google.com/thumbnail?id=${driveId}&sz=w${largura}`;
+  return `https://lh3.googleusercontent.com/d/${driveId}=w${largura}`;
 }
 
 export function reais(valor: number) {
